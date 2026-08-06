@@ -12,36 +12,36 @@ export default function SampleSection() {
         </span>
 
         <h2 className="text-4xl sm:text-6xl font-bold tracking-tight text-white leading-tight">
-          Diseño, Estrategia & <br className="hidden sm:block" />
+          Guía Esencial de Cuidados para <br className="hidden sm:block" />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-400 to-pink-500">
-            Contenido Gastronómico
+            Gatitos Bebés 🐾
           </span>
         </h2>
 
         <p className="text-lg sm:text-xl text-white/70 max-w-2xl leading-relaxed font-light">
-          Creamos identidades visuales impactantes, producción audiovisual de alta fidelidad y conceptos de marca diseñados para cautivar. Esta sección de prueba permite experimentar el scroll fluido y las interacciones dinámicas.
+          Porque incluso el felino más rudo de la agencia necesita su tetero tibio a tiempo, masajitos estimulantes en la panza y al menos 18 horas de siesta para que la creatividad vuelva a brillar.
         </p>
 
-        {/* Example Grid Cards */}
+        {/* Kitten Care Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full mt-6">
           <div className="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm text-left hover:border-amber-400/50 transition-all">
-            <div className="text-amber-400 font-bold text-xl mb-2">01. Branding</div>
+            <div className="text-amber-400 font-bold text-xl mb-2">🍼 01. El Tetero & Dieta</div>
             <p className="text-sm text-white/60">
-              Identidad visual única y estrategia de marca para posicionar tu negocio gastronómico.
+              Fórmula maternizada especial para gatitos cada 3 horas. Nada de leche entera de vaca o nuestro director creativo tendrá pataleta estomacal antes de la entrega.
             </p>
           </div>
 
           <div className="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm text-left hover:border-amber-400/50 transition-all">
-            <div className="text-amber-400 font-bold text-xl mb-2">02. Audiovisual</div>
+            <div className="text-amber-400 font-bold text-xl mb-2">😴 02. Horas de Siesta</div>
             <p className="text-sm text-white/60">
-              Producción de video comercial, contenido para redes y dirección de arte Food Folio.
+              Mantas térmicas y 20 horas de sueño regenerativo diario. Si lo despiertas antes de su siesta, se negará rotundamente a exportar el video final.
             </p>
           </div>
 
           <div className="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm text-left hover:border-amber-400/50 transition-all">
-            <div className="text-amber-400 font-bold text-xl mb-2">03. Digital</div>
+            <div className="text-amber-400 font-bold text-xl mb-2">🎾 03. Juego & Rascador</div>
             <p className="text-sm text-white/60">
-              Desarrollo web interactivo y experiencias digitales diseñadas para convertir.
+              Rascadores ergonómicos y pelotitas de lana con cascabel para canalizar el estrés y afilar las garras creativas ante revisiones del cliente.
             </p>
           </div>
         </div>
