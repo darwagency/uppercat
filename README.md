@@ -11,6 +11,12 @@ npm run dev
 
 Abre [http://localhost:3000](http://localhost:3000). Para verificar la compilación: `npm run build`.
 
+## Desplegar en Cloudflare Workers
+
+Este sitio se exporta como archivos estáticos en `out/`. En el proyecto de Cloudflare conectado a este repositorio, usa `npm run build` como comando de compilación y `npx wrangler deploy` como comando de despliegue. `wrangler.jsonc` publica `out/` en el Worker `uppercat`.
+
+Para probar localmente la versión de Cloudflare, ejecuta `npm run build` y luego `npm start`.
+
 ## Personalizar
 
 - Nombre, correo y navegación: `components/SiteChrome.tsx`
