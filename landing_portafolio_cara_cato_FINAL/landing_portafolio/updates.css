@@ -1,0 +1,192 @@
+/* Refinamientos finales de portafolio y tienda, octubre 2026 */
+:root { --nav-accent: #ec3f96; }
+body { overflow-x: clip; }
+/* Portada promociones: fondos distintos y clic en el banner, no en los controles */
+.hero-slide:nth-child(1) .hero-media { background:#6b4457; }
+.hero-slide:nth-child(2) .hero-media { background:#355b78; }
+.hero-slide:nth-child(3) .hero-media { background:#98723f; }
+.hero-click { position:absolute; inset:0; display:block; cursor:pointer; }
+.hero-click:focus-visible {outline:4px solid #f04499;outline-offset:-5px;}
+.hero-slide .hero-click .hero-media { inset:0; position:absolute; }
+
+/* Carrusel de marcas en lugar de la antigua huincha */
+.brands-section {padding:18px 0 16px; background:#ebebeb; color:#202020; overflow:hidden;}
+.brands-section h2 {font:800 clamp(10px,.9vw,13px) var(--font-body); letter-spacing:.13em;text-align:center;margin:0 0 15px;}
+.brands-loop {width:100%;cursor:default;}
+.brands-loop .loop-group {gap:clamp(34px,4vw,74px);padding-right:clamp(34px,4vw,74px);}
+.brand-logo {height:57px; min-width:150px; flex:0 0 auto; display:grid; place-items:center; position:relative; color:#292929;}
+.brand-logo strong {font:900 clamp(17px,2vw,27px)/1 var(--font-display);white-space:nowrap;letter-spacing:-.025em;}
+.brand-logo img {width:160px;height:55px;object-fit:contain;}
+.brand-logo:has(img:not([hidden])) strong {display:none;}
+
+/* Habilidades: tres bloques centrados, flechas y arrastre también sobre las tarjetas */
+.skills-section {padding-bottom:clamp(42px,6vw,80px);}
+.skills-carousel-shell {width:min(calc(100% - 60px),1345px);margin-inline:auto; display:flex;align-items:center; gap:clamp(7px,1.2vw,18px);}
+.skills-loop {flex:1; min-width:0; overflow:hidden;}
+.skills-loop .skill-card {box-sizing:border-box;width:calc((min(100vw - 160px, 1170px) - 20px)/3);min-height:clamp(240px,21vw,370px);border-radius:clamp(20px,2.5vw,38px);padding:clamp(20px,2.6vw,38px);-webkit-user-drag:none;}
+.skills-loop .skill-card * {pointer-events:none;}
+.skills-loop .skill-card span {font-size:clamp(32px,4vw,70px);}
+.skills-loop .loop-group {gap:10px;padding-right:10px;}
+.skills-arrow {flex:0 0 40px; width:40px;height:40px;cursor:pointer;border-radius:50%;border:1px solid #888;background:transparent;color:#242424;font-size:29px;line-height:1;}
+.skills-arrow:hover {background:#222;color:#fff;}
+.skills-decor .popsicle {display:none!important;}
+.skills-decor {bottom:-50px;}
+.skills-decor .skull {display:block;margin-inline:auto;width:max-content;}
+
+/* Packaging limpio a la derecha y sin gran hueco encima */
+.packaging-section {padding-top:clamp(52px,6vw,95px)!important;}
+.pack-heading {min-height:unset!important; margin:0 auto clamp(18px,2.4vw,32px)!important; padding:0; text-align:right;display:flex;flex-direction:column;align-items:flex-end;}
+.pack-heading h2 {margin:0;font:clamp(70px,11vw,170px)/.98 var(--font-display);color:white;letter-spacing:-.025em;}
+.pack-heading span {font:800 clamp(10px,.9vw,13px) var(--font-body);letter-spacing:.12em;}
+.packaging-scroller .media-slot img {object-fit:contain;}
+.packaging-scroller .media-slot.has-image {background:#292929;}
+
+/* Menús como un mazo-acordeón: siempre se ven y son clicables TODOS los encabezados. */
+.menu-scroll-track {height:320vh;}
+.menu-scroll-track .menus-accordion {position:sticky;top:6vh;height:min(82vh,750px); min-height:350px;max-height:none;display:flex;flex-direction:column;overflow:hidden;isolation:isolate;border-radius:17px;}
+.menu-scroll-track .menu-item {position:relative!important;inset:auto!important;top:auto!important;left:auto!important;bottom:auto!important;right:auto!important;flex:0 0 var(--menu-head,62px);height:var(--menu-head,62px)!important;min-height:var(--menu-head,62px);display:flex;flex-direction:column;z-index:auto!important;transform:none!important;transition:flex-grow .44s ease,background .3s ease;box-shadow:none;}
+.menu-scroll-track .menu-item.is-open {flex:1 1 auto;min-height:var(--menu-head,62px);}
+.menu-scroll-track .menu-trigger {width:100%;height:var(--menu-head,62px);min-height:var(--menu-head,62px);flex-shrink:0;cursor:pointer;}
+.menu-scroll-track .menu-item:not(.is-open) .menu-panel {visibility:hidden;opacity:0;}
+.menu-scroll-track .menu-panel {flex:1 1 auto;height:auto!important;min-height:0;overflow:hidden;opacity:1;transition:opacity .25s ease;}
+.menu-scroll-track .menu-photo {height:100%;min-height:0;}
+.menu-scroll-track .menu-item.is-open {box-shadow:inset 0 -1px 0 #444;}
+.menu-scroll-track .menu-item h3 {flex:0 0 auto;}
+
+/* Testimonios y banner de tienda separados. Banner más alto y premium. */
+.testimonials-section {padding-bottom:clamp(14px,2vw,28px);}
+.shop-feature-section {background:#050505;padding:clamp(4px,1vw,15px) 0 clamp(35px,5.5vw,75px);}
+.shop-feature-section .shop-promo {width:100%;min-height:clamp(260px,23vw,380px);grid-template-columns:42% 58%;padding:clamp(23px,3vw,48px);gap:0;border:0;border-radius:19px;background:#711940;align-items:center;}
+.shop-feature-section .shop-promo-copy strong {font-size:clamp(44px,5vw,80px);line-height:.99;margin:10px 0;}
+.shop-feature-section .shop-promo-desc {font-size:clamp(12px,1.1vw,16px);}
+.shop-feature-section .shop-promo-link {font-size:clamp(12px,1.05vw,15px);margin-top:15px;}
+.shop-feature-section .shop-promo-products {height:100%;gap:clamp(8px,1.6vw,24px);padding:0 14px;}
+.shop-feature-section .shop-promo-products .media-slot {height:clamp(170px,17vw,290px);min-width:0;aspect-ratio:.7;overflow:visible;}
+.shop-feature-section .shop-promo-products img {object-fit:contain;}
+.shop-feature-section .shop-promo:hover {filter:brightness(1.08);}
+
+/* Índice lateral: flotante sin caja, adaptativo según el contraste de cada sección. */
+.side-index {width:155px;right:12px;filter:none;}
+.side-index-items {border:0!important;border-radius:0!important;padding:0!important;background:transparent!important;backdrop-filter:none!important;box-shadow:none!important;gap:3px;}
+.side-index-title {font:500 11px var(--font-body);opacity:.72;letter-spacing:0;}
+.side-index-items a {font-size:11px;font-weight:700;padding:5px 8px 5px 0;color:#a7a7a7;text-shadow:0 1px 8px #0007;}
+.side-index-items a.is-current,.side-index-items a:hover {color:#fff;}
+.side-index.light-index .side-index-title {color:#777;}
+.side-index.light-index .side-index-items a {color:#929292;text-shadow:none;}
+.side-index.light-index .side-index-items a.is-current,.side-index.light-index .side-index-items a:hover {color:#181818;}
+.side-index-items a.side-index-shop {border:0;padding-top:8px;margin-top:3px;}
+.side-index-items a:after {background:#ee3d9a;}
+
+/* Footer azul a pantalla completa, contenido interno limitado y nuevo sello circular */
+.footer-shell {width:100%;padding:0!important;background:var(--blue)!important;}
+.footer-grid {width:min(calc(100% - var(--page-gutter) - var(--page-gutter)),1440px)!important;margin-inline:auto;max-width:1440px;min-height:clamp(190px,18vw,270px);padding:clamp(18px,2.8vw,37px) 0!important;background:transparent!important;}
+.footer-mark {display:flex;align-items:center;justify-content:center;min-width:0;}
+.footer-mark span {display:grid;place-items:center;text-align:center;width:clamp(130px,13vw,190px);aspect-ratio:1;border:clamp(3px,.4vw,6px) solid #121212;border-radius:50%;background:#fcf6df;color:#111;font:clamp(29px,3.1vw,44px)/.94 var(--font-display);transform:rotate(-8deg);letter-spacing:-.03em;box-shadow:8px 9px 0 #102e6c55;}
+
+/* SHOP compacto, tres destacados en rotación + catálogo unifila */
+.shop-hero {padding-top:22px;padding-bottom:42px;}
+.shop-hero-inner {min-height:315px;grid-template-columns:1.15fr .85fr;align-items:center;gap:clamp(20px,3vw,50px);}
+.shop-hero-main {justify-content:center;padding-top:25px;}
+.shop-hero h1 {font-size:clamp(80px,10.5vw,150px);line-height:.86;}
+.shop-hero-copy {margin:16px 0;}
+.shop-featured {position:relative;width:100%;height:clamp(250px,27vw,370px);border-radius:18px;overflow:hidden;box-shadow:10px 12px 0 #080808;}
+.shop-featured-slides,.shop-featured-slide {position:absolute;inset:0;}
+.shop-featured-slide {display:flex;flex-direction:column;justify-content:space-between;padding:25px;color:#171717;background:#ef4194;text-decoration:none;opacity:0;visibility:hidden;transition:opacity .5s ease,visibility .5s ease;}
+.shop-featured-slide:nth-child(2) {background:#b4b7ff;}
+.shop-featured-slide:nth-child(3) {background:#ffda57;}
+.shop-featured-slide.is-active {opacity:1;visibility:visible;}
+.featured-tag {font:800 11px var(--font-body);letter-spacing:.12em;z-index:1;}
+.featured-word {font:clamp(130px,19vw,285px)/.77 var(--font-display);letter-spacing:-.07em;text-align:center;align-self:center;margin:auto;}
+.shop-featured-slide img {position:absolute;inset:16% 8%;width:84%;height:68%;object-fit:contain;z-index:1;}
+.shop-featured-slide:has(img:not([hidden])) .featured-word {opacity:.12;}
+.featured-bottom {font:800 18px var(--font-display);z-index:1;}
+.featured-controls {position:absolute;z-index:5;bottom:10px;right:10px;display:flex;gap:10px;align-items:center;background:#111d;border:1px solid #ffffff55;border-radius:40px;padding:5px 7px;}
+.featured-controls>button {border:0;background:transparent;color:#fff;width:26px;height:26px;font-size:23px;cursor:pointer;}
+.featured-dots {display:flex;gap:5px;}
+.featured-dots button {border:0;background:#ffffff88;width:7px;height:7px;border-radius:50%;padding:0;cursor:pointer;}
+.featured-dots button.is-active {background:#fff;}
+.shop-ticker {background:#e50c19;}
+.shop-ticker span {font-size:clamp(18px,2.1vw,30px);}
+.shop-catalog {padding-block:clamp(40px,5vw,70px);}
+.shop-list-shell {display:flex;align-items:center;gap:13px;min-width:0;}
+.shop-list-arrow {flex:0 0 38px;width:38px;height:38px;border:1px solid #777;border-radius:50%;background:transparent;color:#111;font-size:26px;cursor:pointer;}
+.shop-list-arrow:hover {background:#161616;color:white;}
+.shop-products-grid {display:flex!important;gap:0!important;scrollbar-width:none;overflow-x:auto;overflow-y:hidden;flex:1;min-width:0;}
+.shop-products-grid .shop-loop-track {display:flex;width:max-content;min-width:max-content;gap:0;}
+.shop-products-grid .shop-loop-group {display:flex;width:max-content;flex:0 0 auto;gap:14px;padding-right:14px;align-items:stretch;}
+.shop-products-grid .shop-product,.shop-products-grid .shop-product:nth-child(4),.shop-products-grid .shop-product:nth-child(5) {flex:0 0 clamp(275px,24vw,370px)!important;width:clamp(275px,24vw,370px)!important;max-width:370px;grid-column:auto;min-width:0;transform:none;}
+.shop-products-grid .shop-product .shop-image {aspect-ratio:1.08!important;}
+.shop-products-grid .shop-product .shop-placeholder-number {font-size:clamp(135px,12.5vw,200px);}
+.shop-products-grid .shop-product .shop-card-body {padding:15px 12px 13px;}
+.shop-products-grid .shop-product .shop-card-body h3 {font-size:32px;}
+.shop-products-grid .shop-product .shop-card-body p {font-size:12px;margin-bottom:15px;}
+.shop-products-grid .shop-product .shop-buy {min-height:44px;}
+.shop-how-heading {position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center!important;text-align:center;gap:10px;}
+.shop-how-heading h2 {text-align:center!important;margin:0;}
+.shop-how-heading>span {text-align:center;}
+
+/* Lo-fi integrado en la cabecera de la tienda. Audio se activa SOLO a petición. */
+.lofi-player {position:absolute;top:clamp(95px,8vw,125px);right:clamp(12px,3vw,55px);z-index:22;display:flex;align-items:center;gap:9px;border:1px solid #666;border-radius:100px;background:#2b2b2b;color:white;padding:7px 12px;box-shadow:0 8px 24px #0004;font:700 11px var(--font-body);}
+.lofi-play,.lofi-mute {color:white;background:#ec3990;border:0;border-radius:50%;width:28px;height:28px;display:grid;place-items:center;cursor:pointer;flex-shrink:0;}
+.lofi-mute {background:#444;}
+.lofi-label {white-space:nowrap;}.lofi-label small {font-size:9px;color:#d1d1d1;}
+.lofi-volume {width:68px;accent-color:#ef449b;cursor:pointer;}
+
+@media (max-width:900px) {
+ .skills-carousel-shell {width:calc(100% - 18px);gap:5px;}
+ .skills-arrow {flex-basis:30px;width:30px;height:30px;font-size:23px;}
+ .skills-loop .skill-card {width:clamp(200px,30vw,290px);min-height:230px;}
+ .skills-loop .skill-card span {font-size:clamp(28px,4.8vw,49px);}
+ .shop-feature-section .shop-promo-copy strong {font-size:clamp(32px,4vw,53px);}
+ .shop-hero-inner {grid-template-columns:1fr .95fr;min-height:290px;}
+ .shop-hero h1 {font-size:clamp(70px,11vw,120px);}
+ .lofi-player {top:92px;right:15px;}
+}
+@media (max-width:760px) {
+ .skills-loop .skill-card {width:clamp(205px,57vw,300px);min-height:205px;}
+ .menu-scroll-track .menus-accordion {height:78svh;min-height:330px;top:9svh;}
+ .menu-scroll-track {height:300svh;}
+ .menu-scroll-track .menu-item {flex-basis:var(--menu-head,47px);height:var(--menu-head,47px)!important;min-height:var(--menu-head,47px);}
+ .menu-scroll-track .menu-trigger {height:var(--menu-head,47px);min-height:var(--menu-head,47px);}
+ .side-index {top:auto;bottom:80px;right:12px;transform:none;width:150px;}
+ .side-index-toggle {display:block!important;background:#1c1c1c;border-radius:25px;border:1px solid #777;}
+ .side-index-items {display:none!important;}
+ .side-index.is-open .side-index-items {display:flex!important;background:#1b1b1b!important;padding:13px!important;border-radius:12px!important;}
+ .footer-grid {width:calc(100% - 26px)!important;}
+ .footer-mark span {width:120px;font-size:29px;}
+ .shop-feature-section .shop-promo {min-height:310px;}
+ .shop-feature-section .shop-promo-products .media-slot {height:170px;}
+ .shop-hero-inner {display:flex;flex-direction:column;align-items:stretch;}
+ .shop-hero-main {padding-top:45px;}
+ .shop-featured {height:265px;max-width:550px;}
+ .shop-product:nth-child(5) .shop-image {aspect-ratio:1.08;}
+ .lofi-player {top:80px;right:10px;gap:5px;padding:5px 8px;}
+}
+@media(max-width:520px) {
+ .brands-section h2 {font-size:10px;}
+ .brand-logo {height:45px;min-width:110px;}.brand-logo strong {font-size:18px;}
+ .skills-section {padding-bottom:38px;}
+ .skills-loop .skill-card {width:clamp(195px,66vw,270px);min-height:170px;padding:17px;border-radius:19px;}
+ .skills-loop .skill-card span {font-size:clamp(28px,8vw,39px);}
+ .skills-decor {bottom:-25px;}
+ .packaging-section {padding-top:45px!important;}
+ .pack-heading h2 {font-size:clamp(55px,15vw,88px);}
+ .shop-feature-section .shop-promo {display:flex;flex-direction:column;align-items:stretch;min-height:0;padding:24px 18px;gap:16px;}
+ .shop-feature-section .shop-promo-copy strong {font-size:47px;}
+ .shop-feature-section .shop-promo-products {padding:0;gap:8px;min-height:150px;}
+ .shop-feature-section .shop-promo-products .media-slot {height:145px;}
+ .footer-grid {grid-template-columns:repeat(2,minmax(0,1fr));row-gap:18px;}
+ .footer-column {padding:8px;}
+ .footer-mark span {width:110px;font-size:27px;}
+ .shop-list-shell {gap:4px;}
+ .shop-list-arrow {flex:0 0 26px;width:26px;height:30px;font-size:22px;}
+ .shop-products-grid .shop-product,.shop-products-grid .shop-product:nth-child(4),.shop-products-grid .shop-product:nth-child(5) {flex-basis:clamp(235px,69vw,310px)!important;width:clamp(235px,69vw,310px)!important;}
+ .shop-how-heading {align-items:center!important;}
+ .shop-how-heading h2 {font-size:clamp(35px,9vw,48px)!important;}
+ .lofi-player {max-width:calc(100% - 30px);position:relative;top:auto;right:auto;width:max-content;margin:2px 14px 0 auto;z-index:20;}
+ .shop-hero-main {padding-top:38px;}
+}
+@media(prefers-reduced-motion:reduce) {.shop-featured-slide,.menu-scroll-track .menu-item {transition-duration:.01ms!important;}}
+
+/* Exact three visible skills on desktop; JS computes pixel width after layout. */
+.skills-loop .skill-card {width:var(--card-width, clamp(260px,23vw,430px));}
