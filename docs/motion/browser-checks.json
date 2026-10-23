@@ -1,0 +1,84 @@
+{
+  "viewportDesktop": [
+    1440,
+    900
+  ],
+  "viewportMobile": [
+    390,
+    680
+  ],
+  "social": {
+    "seconds": 12.273,
+    "topScrollDelta": -221,
+    "bottomScrollDelta": 221
+  },
+  "hoverPause": {
+    "seconds": 40.60070000001788,
+    "topDelta": 0,
+    "bottomDelta": 731
+  },
+  "modalPause": {
+    "seconds": 8.683,
+    "deltas": [
+      0,
+      0
+    ]
+  },
+  "reducedMotion": {
+    "seconds": 12.8505,
+    "deltas": [
+      0,
+      0
+    ]
+  },
+  "offscreenBrandDelta": 0,
+  "mouseDrag": {
+    "delta": 180,
+    "accidentalDialog": false
+  },
+  "mobile": {
+    "width": 390,
+    "documentWidth": 390,
+    "indexOpens": true,
+    "fanDisabled": true,
+    "clonedTabStops": 0
+  },
+  "products": {
+    "seconds": 36.85369999998808,
+    "delta": 442
+  },
+  "ticker": {
+    "pausesOnHover": true,
+    "seconds": 21.401099999994038
+  },
+  "explicitProductPause": {
+    "seconds": 44.90519999998808,
+    "delta": 0
+  },
+  "keyboardProductFocus": {
+    "scrollY": 521,
+    "focus": "Consultar por Producto 05 en WhatsApp",
+    "left": 2533,
+    "card": {
+      "x": 82.84375,
+      "y": 916.53125,
+      "w": 225.09375,
+      "h": 46.796875
+    },
+    "viewport": {
+      "x": 46,
+      "y": 493.15625,
+      "w": 298,
+      "h": 493.171875
+    }
+  },
+  "keyboardPause": {
+    "scrollY": 545,
+    "focus": "Pausar movimiento de Productos",
+    "position": "fixed",
+    "rect": {
+      "x": 8,
+      "y": 8
+    }
+  }
+}

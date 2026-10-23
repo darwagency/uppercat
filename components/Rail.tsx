@@ -1,9 +1,11 @@
 "use client";
 import { Children, cloneElement, isValidElement, useEffect, useId, useRef, useState, type ReactNode, type ReactElement, type CSSProperties } from "react";
+import useAmbientMotion from "./useAmbientMotion";
 
 type Variant = "skills" | "packaging" | "illustrations" | "social-top" | "social-bottom" | "brands" | "testimonials" | "products";
 const classes: Record<Variant, string> = { skills:"skills-loop", packaging:"packaging-scroller", illustrations:"illustration-loop", "social-top":"social-loop social-row-top", "social-bottom":"social-loop social-row-bottom", brands:"brands-loop", testimonials:"testimonials-loop", products:"shop-products-grid" };
-const speeds: Record<Variant, number> = { skills:0, packaging:24, illustrations:22, "social-top":47, "social-bottom":-43, brands:32, testimonials:-28, products:0 };
+// Signed pixels/second: negative moves the artwork right; positive moves it left.
+const speeds: Record<Variant, number> = { skills:0, packaging:-16, illustrations:16, "social-top":-18, "social-bottom":18, brands:-18, testimonials:12, products:12 };
 
 export default function Rail({ children, label, variant }: { children: ReactNode; label: string; variant: Variant }) {
   const viewport = useRef<HTMLDivElement>(null);
@@ -11,11 +13,10 @@ export default function Rail({ children, label, variant }: { children: ReactNode
   const unit = useRef(0);
   const drag = useRef<{ id: number; x: number; left: number; moved: boolean } | null>(null);
   const preventClick = useRef(false);
-  const hovered = useRef(false);
-  const pauseUntil = useRef(0);
   const [ready, setReady] = useState(false);
   const [paused, setPaused] = useState(false);
   const [cardWidth, setCardWidth] = useState<string>();
+  const { running, pauseFor } = useAmbientMotion(viewport, ready && !paused && speeds[variant] !== 0);
   const id = useId();
   useEffect(() => { setReady(true); }, []);
   useEffect(() => {
@@ -35,20 +36,34 @@ export default function Rail({ children, label, variant }: { children: ReactNode
   }, [ready, variant]);
   useEffect(() => {
     const el = viewport.current;
-    if (!el || !ready || paused || !speeds[variant]) return;
+    if (!el || !running) return;
     let frame = 0, previous = 0;
-    const media = matchMedia("(prefers-reduced-motion: reduce)");
+    // Keep fractional distance: repeatedly adding <1px to scrollLeft can round to zero.
+    let position = el.scrollLeft, lastWritten = el.scrollLeft;
     const tick = (now: number) => {
       const dt = previous ? Math.min(now - previous, 48) : 0; previous = now;
-      if (!media.matches && !document.hidden && !hovered.current && !drag.current && !el.contains(document.activeElement) && !document.querySelector("dialog[open]") && now > pauseUntil.current) el.scrollLeft += speeds[variant] * dt / 1000;
+      if (el.scrollLeft !== lastWritten) position = el.scrollLeft;
+      position += speeds[variant] * dt / 1000;
+      el.scrollLeft = position;
+      lastWritten = el.scrollLeft;
       frame = requestAnimationFrame(tick);
     };
     frame = requestAnimationFrame(tick); return () => cancelAnimationFrame(frame);
-  }, [ready, variant, paused]);
+  }, [running, variant]);
+  useEffect(() => {
+    const release = () => {
+      if (!drag.current) return;
+      preventClick.current = drag.current.moved;
+      drag.current = null;
+    };
+    window.addEventListener("pointerup", release);
+    window.addEventListener("pointercancel", release);
+    return () => { window.removeEventListener("pointerup", release); window.removeEventListener("pointercancel", release); };
+  }, []);
   const shift = (direction: number) => {
     const el = viewport.current, group = original.current;
     if (!el || !group) return;
-    pauseUntil.current = performance.now() + 1800;
+    pauseFor();
     const width = group.firstElementChild?.getBoundingClientRect().width || el.clientWidth * .8;
     const gap = parseFloat(getComputedStyle(group).gap) || 0;
     el.scrollBy({ left: direction * (width + gap), behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
@@ -56,17 +71,28 @@ export default function Rail({ children, label, variant }: { children: ReactNode
   const copy = Children.map(children, (child) => isValidElement(child) && typeof child.type === "string" ? cloneElement(child as ReactElement<{tabIndex?: number}>, { tabIndex: -1 }) : child);
   const groupClass = variant === "products" ? "shop-loop-group loop-group" : "loop-group";
   const controls = (direction: number) => <button type="button" className={variant === "skills" ? "skills-arrow skills-" + (direction < 0 ? "prev" : "next") : variant === "products" ? "shop-list-arrow" : "round-btn"} aria-label={label + ": " + (direction < 0 ? "anteriores" : "siguientes")} aria-controls={id} onClick={() => shift(direction)}>{variant === "packaging" ? (direction < 0 ? "←" : "→") : (direction < 0 ? "‹" : "›")}</button>;
-  const finish = () => { preventClick.current = Boolean(drag.current?.moved); drag.current = null; };
+  const finish = () => { if (drag.current) { preventClick.current = drag.current.moved; drag.current = null; } };
   return <>
     {variant === "packaging" && <div className="gallery-toolbar content-wrap"><span className="eyebrow">TRABAJOS SELECCIONADOS / 01</span><div className="gallery-controls">{controls(-1)}{controls(1)}</div></div>}
     <div className={variant === "skills" ? "skills-carousel-shell" : variant === "products" ? "shop-list-shell" : undefined}>
       {(variant === "skills" || variant === "products") && controls(-1)}
       <div className={"loop-viewport " + classes[variant]} ref={viewport} id={id} role="region" aria-label={label} tabIndex={0} style={{ "--card-width":cardWidth } as CSSProperties}
-        onMouseEnter={() => { hovered.current = true; }} onMouseLeave={() => { hovered.current = false; }}
-        onScroll={(e) => { const el = e.currentTarget, size = unit.current; if (!size) return; let offset = 0; if (el.scrollLeft < size * .5) offset = size; else if (el.scrollLeft > size * 1.5) offset = -size; if (offset) { el.scrollLeft += offset; if (drag.current) drag.current.left += offset; } }}
+        onScroll={(e) => {
+          const el = e.currentTarget, size = unit.current;
+          if (!size) return;
+          let offset = 0;
+          if (el.scrollLeft < size * .5) offset = size;
+          else if (el.scrollLeft > size * 1.5) offset = -size;
+          if (offset) {
+            // Do not move a keyboard-focused card into an inaccessible copy.
+            if (document.activeElement !== el && el.contains(document.activeElement)) return;
+            el.scrollLeft += offset;
+            if (drag.current) drag.current.left += offset;
+          }
+        }}
         onKeyDown={(e) => { if (e.target === e.currentTarget && ["ArrowLeft","ArrowRight"].includes(e.key)) { e.preventDefault(); shift(e.key === "ArrowRight" ? 1 : -1); } }}
         onDragStart={(e) => e.preventDefault()}
-        onPointerDown={(e) => { preventClick.current = false; pauseUntil.current = performance.now() + 1800; if (e.pointerType !== "mouse" || e.button !== 0) return; drag.current = {id:e.pointerId,x:e.clientX,left:e.currentTarget.scrollLeft,moved:false}; }}
+        onPointerDown={(e) => { preventClick.current = false; pauseFor(); if (e.pointerType !== "mouse" || e.button !== 0) return; drag.current = {id:e.pointerId,x:e.clientX,left:e.currentTarget.scrollLeft,moved:false}; }}
         onPointerMove={(e) => { const d = drag.current; if (!d || d.id !== e.pointerId) return; const dx = e.clientX - d.x; if (Math.abs(dx) > 7) { d.moved = true; e.currentTarget.setPointerCapture(e.pointerId); } if (d.moved) { e.currentTarget.scrollLeft = d.left - dx; e.preventDefault(); } }}
         onPointerUp={finish} onPointerCancel={finish} onClickCapture={(e) => { if (preventClick.current) { e.preventDefault(); e.stopPropagation(); preventClick.current = false; } }}>
         <div className={variant === "products" ? "shop-loop-track loop-track" : "loop-track"}>

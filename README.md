@@ -37,6 +37,10 @@ La carpeta HTML es la referencia visual exacta. `app/globals.css` importa sus cu
 
 Carruseles con los controles visibles del modelo. La pausa adicional solo aparece al recibir foco de teclado. Las galerías mantienen loops continuos, arrastre con mouse, swipe nativo y flechas de teclado. Las copias se ocultan del árbol accesible y del orden de tabulación. El mazo de cuatro menús recupera su tramo de scroll sticky y selección directa. Los modales usan `dialog`, restauran el foco y cierran con Escape o fuera del contenido. El modo de movimiento reducido evita autoplay y scroll suave, conservando las proporciones del modelo.
 
+El índice lateral se abre sutilmente como un abanico con hover o foco en escritorio, conservando su tamaño original en reposo. Marcas y packaging avanzan a la derecha; ilustraciones, testimonios y catálogo avanzan a la izquierda. En redes, la fila superior va a la derecha y la inferior a la izquierda, ambas a 18 px/s. Las velocidades se ajustan en `components/Rail.tsx`; los criterios de pausa están en `components/useAmbientMotion.ts`. Las portadas se funden cada 6 s y los destacados cada 6,5 s. La cinta de la tienda completa su ciclo en 80 s sin salto entre repeticiones.
+
+El movimiento se detiene fuera de pantalla, en pestañas ocultas, al pasar el cursor, al enfocar o arrastrar y al abrir un proyecto. Después de una interacción manual espera 2,4 s; con foco dentro de la galería permanece detenido. No se agregan librerías de animación. Especificaciones y comprobaciones en `docs/motion/README.md`.
+
 ## Entrega de diseño
 
 Consultar el PDF y su generador editable en `scripts/generate_design_brief.py`. El generador usa Python con ReportLab, Pillow y pypdf. Ejecutar desde la raíz:

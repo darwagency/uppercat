@@ -114,7 +114,7 @@ def frame(c, doc):
     else:
         c.setFillColor(PINK);c.rect(0,H-8,W,8,fill=1,stroke=0)
         c.setFillColor(GRAY);c.setFont('BodyBold',8);c.drawString(48,H-34,'UPPERCAT / BRIEF PARA DISEÑO')
-        c.setFont('Body',8);c.drawRightString(W-48,H-34,'23 OCTUBRE 2026 · V2')
+        c.setFont('Body',8);c.drawRightString(W-48,H-34,'23 OCTUBRE 2026 · V3')
         c.setStrokeColor(colors.HexColor('#dddddd'));c.line(48,41,W-48,41)
         c.setFont('Body',7);c.drawString(48,27,'Portafolio + catálogo  /  Documento de trabajo')
         c.drawRightString(W-48,27,f'{doc.page:02d}')
@@ -126,7 +126,7 @@ story.append(para('BRIEF DE<br/>DISEÑO WEB', 'CoverTitle2'))
 story.append(Spacer(1,15))
 story.append(para('Portafolio creativo + catálogo de productos.<br/>Guía de dirección visual, imágenes, contenido<br/>y entrega para completar la web.', 'CoverBody2'))
 story.append(Spacer(1,28))
-story.append(para('23 OCTUBRE 2026 / VERSIÓN 2<br/>Fidelidad al HTML original de referencia<br/>Base funcional: Next.js + React + TypeScript', 'CoverBody2'))
+story.append(para('23 OCTUBRE 2026 / VERSIÓN 3<br/>Fidelidad al HTML original + movimiento<br/>Base funcional: Next.js + React + TypeScript', 'CoverBody2'))
 story.append(Spacer(1,26))
 story.append(para('60 espacios de imagen identificados.<br/>Las medidas son recomendaciones de exportación.<br/>Las capturas muestran la implementación actual,<br/>con reservas donde faltan los archivos definitivos.', 'CoverBody2'))
 
@@ -251,7 +251,7 @@ sub('Fotografía de producto')
 bullets(['Exportar cinco imágenes de 1600 × 1600 px. Fondo neutro o transparente, objeto completo centrado y margen de 12% a 15%. La web usa contain para no cortar el producto.', 'Mantener iluminación, temperatura, sombras y posición de cámara coherentes. Evitar accesorios que parezcan incluidos si no se venden con el artículo.', 'Entregar las fotos sin precio, descuento o botón incrustado. El nombre y el CTA se muestran como HTML y el mensaje de WhatsApp se genera desde la ficha.', 'Peso objetivo hasta 300 KB por imagen. Adjuntar master de alta resolución para futuros recortes.'])
 sub('Estado comercial')
 p('Los cinco nombres actuales son Producto 01 a Producto 05 y sus descripciones indican que son fichas de referencia por completar. No presentar estos espacios como stock confirmado. Definir también despacho, retiro, tiempos de producción, personalización y cambios para responder las consultas de forma consistente.')
-small('La huincha conserva forma, altura y movimiento del HTML, con texto DESCUBRE LA COLECCIÓN UPPERCAT mientras no se confirme la promoción del 10%. La música es manual y su pista es una demostración de 25,6 segundos en loop, según el README original.')
+small('La huincha conserva forma y altura del HTML, con texto DESCUBRE LA COLECCIÓN UPPERCAT y ciclo suave de 80 s mientras no se confirme la promoción del 10%. La música es manual y su pista es una demostración de 25,6 segundos en loop, según el README original.')
 
 # 11
 title(11,'TEXTOS Y FICHAS EDITABLES','Entregar los textos en un documento o planilla, asociados a las claves de imagen. El equipo debe poder actualizar contenido sin abrir archivos de diseño.')
@@ -342,7 +342,23 @@ table(['Inicio','Tienda'],[('La portada conserva su formato horizontal. Las marc
 small('Antes de aprobar cada imagen, probarla tanto en el bloque de escritorio como en el móvil. El recorte central automático puede desplazar el motivo o cortar bordes de una composición.')
 
 # 18
-title(18,'ENTREGA Y APROBACIÓN','El objetivo de la entrega es reemplazar las reservas sin reconstruir las interacciones ni perder legibilidad. Presentar cada pieza con su clave y estado de aprobación.')
+title(18,'MOVIMIENTO Y ESTADOS','El movimiento acompaña al contenido y mantiene la composición de referencia. Preparar estados de reposo y de interacción; la obra debe seguir siendo fácil de observar y leer.')
+table(['Elemento','Movimiento implementado'],[
+ ('Índice derecho','Abanico suave al pasar el mouse o enfocar: escala 1,035; expansión de 1,6 px por enlace y giro máximo de 1°. Transición de 450 ms. En reposo conserva sus medidas. En móvil funciona como menú desplegable.'),
+ ('Marcas y packaging','Avance visual a la derecha: marcas a 18 px/s y packaging a 16 px/s. Mantener suficiente área segura alrededor de cada pieza.'),
+ ('Ilustraciones','Miniaturas hacia la izquierda, 16 px/s. La selección y la ampliación permanecen manuales.'),
+ ('Redes sociales','Fila superior hacia la derecha y fila inferior hacia la izquierda, ambas a 18 px/s. Conservar el orden y las proporciones especificadas en la página 8.'),
+ ('Reseñas y catálogo','Avance hacia la izquierda, 12 px/s. Evitar textos extensos en las tarjetas; el movimiento se detiene al interactuar.'),
+ ('Portadas y destacados','Fundido de 750 ms. Rotación de portada cada 6 s y destacado cada 6,5 s. Entregar las imágenes sin animar flechas o indicadores dentro del archivo.'),
+ ('Cinta de tienda','Ciclo continuo de 80 s, con grupos idénticos y separación incluida para que la unión sea imperceptible.'),
+], [106,393],compact=True)
+sub('Pausas y accesibilidad')
+p('Las animaciones se detienen con hover, foco, arrastre, rueda, proyecto abierto, pestaña oculta o contenido fuera de pantalla. Después de una interacción manual esperan 2,4 s; al salir del foco, 1,2 s. Las flechas, el teclado y el swipe siguen disponibles. La pausa explícita permanece hasta reactivarla.')
+p('Con la preferencia del sistema de movimiento reducido no hay reproducción automática ni abanico. No depender de una animación para comunicar el servicio, el título o la acción. Mantener los estados de foco y selección visibles en los editables.')
+small('No se requieren GIF, video ni librerías adicionales para estos efectos. Las imágenes finales se integran en los mismos espacios existentes. Documentación editable y evidencia de revisión: docs/motion/.')
+
+# 19
+title(19,'ENTREGA Y APROBACIÓN','El objetivo de la entrega es reemplazar las reservas sin reconstruir las interacciones ni perder legibilidad. Presentar cada pieza con su clave y estado de aprobación.')
 sub('Paquete del diseñador')
 bullets(['Archivo editable en Figma, Illustrator o equivalente: portada, componentes, retícula, tokens y versiones 1440/390 px. Incluir estados de hover, foco, selección y menú móvil.', 'Carpeta web/ con imágenes optimizadas y nombres del inventario. Carpeta masters/ con originales y mockups editables. Carpeta brand/ con SVG, favicon, paleta y tipografías licenciadas.', 'Documento o planilla de contenido con clave, título, descripción, alt, crédito, permiso y estado. Para productos, incorporar precio, materiales, medidas, variantes y disponibilidad.', 'Listado de cambios propuestos que requieran desarrollo adicional: imagen móvil distinta, video, páginas de proyecto, nuevos productos o compra en línea.'])
 sub('Criterios de aceptación')
@@ -361,7 +377,7 @@ doc=SimpleDocTemplate(str(OUT),pagesize=(W,H),rightMargin=48,leftMargin=48,topMa
 doc.build(story,onFirstPage=frame,onLaterPages=frame)
 reader=PdfReader(OUT)
 texts=[page.extract_text() or '' for page in reader.pages]
-assert len(texts)==18, f'Expected 18 pages, got {len(texts)}'
+assert len(texts)==19, f'Expected 19 pages, got {len(texts)}'
 keys=json.loads((ROOT/'data/images.json').read_text(encoding='utf-8'))
 all_text='\n'.join(texts)
 for key in keys: assert key in all_text, f'Missing inventory key {key}'

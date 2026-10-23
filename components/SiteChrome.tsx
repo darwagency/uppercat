@@ -1,9 +1,14 @@
 "use client";
 import Link from "next/link";
 import Media from "./Media";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type CSSProperties } from "react";
 import { usePathname } from "next/navigation";
 import { contactUrl, sections, site } from "@/data/site";
+
+const fanStyle = (index: number): CSSProperties => {
+  const distance = index - (sections.length - 1) / 2;
+  return { "--fan-x": `${-(11 - Math.abs(distance) * 1.35)}px`, "--fan-y": `${distance * 1.6}px`, "--fan-angle": `${distance * .2}deg`, "--fan-delay": `${Math.abs(distance) * 12}ms` } as CSSProperties;
+};
 
 export function Header() {
   const shop = usePathname().startsWith("/tienda");
@@ -38,7 +43,7 @@ export function SideIndex() {
     update(); window.addEventListener("scroll",scroll,{passive:true}); window.addEventListener("resize",scroll); document.addEventListener("keydown",escape);
     return () => { cancelAnimationFrame(frame); window.removeEventListener("scroll",scroll); window.removeEventListener("resize",scroll); document.removeEventListener("keydown",escape); };
   }, []);
-  return <nav className={"side-index" + (open ? " is-open" : "") + (light ? " light-index" : "")} aria-label="Índice de secciones"><button type="button" className="side-index-toggle" aria-expanded={open} aria-controls="side-index-list" onClick={() => setOpen(!open)}>ÍNDICE <span aria-hidden="true">☰</span></button><div className="side-index-items" id="side-index-list"><span className="side-index-title">ÍNDICE (09)</span>{sections.map(([id,label]) => <a href={"#" + id} key={id} className={active === id ? "is-current" : undefined} aria-current={active === id ? "location" : undefined} onClick={() => setOpen(false)}>{label}</a>)}<Link className="side-index-shop" href="/tienda">Tienda ↗</Link></div></nav>;
+  return <nav className={"side-index" + (open ? " is-open" : "") + (light ? " light-index" : "")} aria-label="Índice de secciones"><button type="button" className="side-index-toggle" aria-expanded={open} aria-controls="side-index-list" onClick={() => setOpen(!open)}>ÍNDICE <span aria-hidden="true">☰</span></button><div className="side-index-items" id="side-index-list"><span className="side-index-title" style={fanStyle(-1)}>ÍNDICE (09)</span>{sections.map(([id,label],i) => <a href={"#" + id} key={id} style={fanStyle(i)} className={active === id ? "is-current" : undefined} aria-current={active === id ? "location" : undefined} onClick={() => setOpen(false)}>{label}</a>)}<Link className="side-index-shop" style={fanStyle(sections.length)} href="/tienda">Tienda ↗</Link></div></nav>;
 }
 
 export function ContactFloat() { return <a className="whatsapp-float" href={contactUrl} target="_blank" rel="noopener noreferrer" aria-label="Contactar a Uppercat por WhatsApp"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 3A13 13 0 0 0 4.7 22.3L3 29l6.9-1.8A13 13 0 1 0 16 3Zm0 23.6c-2 0-4-.5-5.7-1.6l-.5-.3-4.1 1.1 1.1-4-.3-.5a10.6 10.6 0 1 1 9.5 5.3Zm5.9-7.8c-.3-.2-1.9-.9-2.2-1s-.5-.1-.7.2c-.2.3-.8 1-1 1.2-.2.2-.3.2-.6.1a9.1 9.1 0 0 1-4.5-4c-.3-.5.3-.4.8-1.4.1-.2 0-.4 0-.6l-1-2.2c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.4-1.2 1.2-1.2 2.8 0 1.6 1.2 3.1 1.3 3.3.2.2 2.3 3.6 5.5 5 2.1.8 3 .9 4.1.7.7-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.6-.1-.2-.3-.3-.6-.5Z" /></svg></a>; }

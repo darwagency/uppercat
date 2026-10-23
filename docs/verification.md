@@ -1,6 +1,6 @@
 # Validación de Uppercat
 
-Fecha de revisión: 23 de octubre de 2026. Corrección de fidelidad respecto del HTML original.
+Fecha de revisión: 23 de octubre de 2026. Fidelidad al HTML original y animaciones de la web.
 
 El recorrido principal es inicio → selección de servicio/proyecto → consulta dirigida a WhatsApp, o inicio → tienda → producto → enlace de consulta con su nombre. Es una exportación estática: los flujos actuales no requieren API, base de datos ni variables secretas.
 
@@ -17,7 +17,10 @@ El recorrido principal es inicio → selección de servicio/proyecto → consult
 - Capturas del original y de la réplica y mediciones JSON en `docs/design-reference/`. La portada vuelve a ser un banner 2.35:1 sin titulares añadidos; se restauran los loops, el mazo sticky, el índice sin caja y el footer compacto.
 - Última sesión de navegador sin advertencias o errores de consola. Los logs de Wrangler confirman HTTP 200 para `/tienda/__next.tienda.__PAGE__.txt` después de la corrección.
 - Página inexistente muestra la página 404 personalizada.
-- PDF: 18 páginas, las 60 claves presentes, sin caracteres de reemplazo ni texto fuera de página. Páginas renderizadas con Poppler y revisadas visualmente.
+- Animaciones comprobadas en navegador con la exportación final: filas sociales a ±18 px/s, pausa independiente al pasar el cursor, galerías fuera de pantalla detenidas y fondo detenido al abrir un proyecto. En 12,85 s con movimiento reducido ambas filas permanecieron en la misma posición. El arrastre desplaza 180 px sin abrir un modal por accidente.
+- Catálogo a 12 px/s; pausa explícita permanece tras salir del foco (44,9 s sin desplazamiento). El teclado alcanza el quinto producto sin que la normalización lo envíe a una copia fuera de vista. El control de pausa aparece fijo al enfocarlo. La cinta se pausa al pasar el cursor y mantiene su transformación durante 21,4 s.
+- Índice de escritorio: expansión en abanico y retorno a sus medidas de reposo. A 390×680 el menú abre y navega a tienda, no usa el efecto de escritorio y el documento mide 390 px de ancho. Cero enlaces o botones de copias en el orden de tabulación. Sin errores ni advertencias de consola en la revisión final. Evidencia y mediciones en `docs/motion/`.
+- PDF V3: 19 páginas, las 60 claves presentes y una nueva página con velocidades, direcciones y estados de movimiento. Páginas actualizadas renderizadas con Poppler y revisadas visualmente.
 
 ## Contenido pendiente
 
