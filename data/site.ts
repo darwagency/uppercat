@@ -9,14 +9,14 @@ export const site = {
 };
 
 export const sections = [
-  ["inicio", "Inicio"], ["habilidades", "Servicios"], ["packaging", "Packaging"],
+  ["inicio", "Inicio"], ["habilidades", "Habilidades"], ["packaging", "Packaging"],
   ["menus", "Diseño menú"], ["ilustracion", "Ilustración"], ["redes", "Redes sociales"],
   ["interior", "Diseño interior"], ["resenas", "Testimonios"], ["contacto", "Contacto"],
 ] as const;
 
 export const services = [
-  { title: "DISEÑO\nDE MENÚ", anchor: "menus", number: "01" },
-  { title: "ILUS\nTRACIÓN", anchor: "ilustracion", number: "02" },
+  { title: "DISEÑO\nDE\nMENÚ", anchor: "menus", number: "01" },
+  { title: "ILUS\nTRA\nCIÓN", anchor: "ilustracion", number: "02" },
   { title: "PACK\nAGING", anchor: "packaging", number: "03" },
   { title: "REDES\nSOCIALES", anchor: "redes", number: "04" },
   { title: "DISEÑO\nINTERIOR", anchor: "interior", number: "05" },
@@ -45,8 +45,14 @@ export const socialProjects: Project[] = Array.from({ length: 10 }, (_, i) => ({
 export type Product = { key: string; name: string; category: string; price: string; description: string };
 // Reemplazar por datos reales antes de presentar estos artículos como productos disponibles.
 export const products: Product[] = Array.from({ length: 5 }, (_, i) => ({
-  key: `shop${i + 1}`, name: `Producto ${String(i + 1).padStart(2, "0")}`, category: "COLECCIÓN EN PREPARACIÓN",
-  price: "Consultar disponibilidad", description: "Estamos preparando esta colección. Escríbenos para conocer las próximas piezas de Uppercat.",
+  key: `shop${i + 1}`, name: `Producto ${String(i + 1).padStart(2, "0")}`, category: `COLECCIÓN / ${String(i + 1).padStart(2, "0")}`,
+  price: "Consultar precio", description: [
+    "Descripción breve del producto. Cambia este texto por la información real.",
+    "Agrega aquí el material, tamaño o las características que quieras destacar.",
+    "Una descripción corta para presentar el artículo de manera atractiva.",
+    "Completa este espacio con el detalle principal de tu producto.",
+    "Este es el quinto producto de la tienda. Personaliza el nombre y el valor.",
+  ][i],
 }));
 
 // Solo se publican marcas y testimonios completos y autorizados.

@@ -1,0 +1,146 @@
+{
+  "reference": [
+    {
+      "selector": ".site-header",
+      "x": 0,
+      "y": 0,
+      "width": 1425,
+      "height": 96
+    },
+    {
+      "selector": ".shop-hero",
+      "x": 0,
+      "y": 96,
+      "width": 1425,
+      "height": 519
+    },
+    {
+      "selector": ".shop-hero-inner",
+      "x": 64,
+      "y": 118,
+      "width": 1297,
+      "height": 455
+    },
+    {
+      "selector": ".shop-featured",
+      "x": 828.125,
+      "y": 161,
+      "width": 533,
+      "height": 370
+    },
+    {
+      "selector": ".shop-ticker",
+      "x": 0,
+      "y": 615,
+      "width": 1425,
+      "height": 49
+    },
+    {
+      "selector": ".shop-catalog",
+      "x": 0,
+      "y": 664,
+      "width": 1425,
+      "height": 926
+    },
+    {
+      "selector": ".shop-product",
+      "x": -1682,
+      "y": 956,
+      "width": 346,
+      "height": 564
+    },
+    {
+      "selector": ".shop-how",
+      "x": 0,
+      "y": 1590,
+      "width": 1425,
+      "height": 575
+    },
+    {
+      "selector": ".shop-end",
+      "x": 0,
+      "y": 2165,
+      "width": 1425,
+      "height": 245
+    },
+    {
+      "selector": ".footer-shell",
+      "x": 0,
+      "y": 2410,
+      "width": 1425,
+      "height": 261
+    }
+  ],
+  "revised": [
+    {
+      "selector": ".site-header",
+      "x": 0,
+      "y": 0,
+      "width": 1425,
+      "height": 96
+    },
+    {
+      "selector": ".shop-hero",
+      "x": 0,
+      "y": 96,
+      "width": 1425,
+      "height": 518
+    },
+    {
+      "selector": ".shop-hero-inner",
+      "x": 64,
+      "y": 118,
+      "width": 1297,
+      "height": 454
+    },
+    {
+      "selector": ".shop-featured",
+      "x": 828.125,
+      "y": 160,
+      "width": 533,
+      "height": 370
+    },
+    {
+      "selector": ".shop-ticker",
+      "x": 0,
+      "y": 614,
+      "width": 1425,
+      "height": 49
+    },
+    {
+      "selector": ".shop-catalog",
+      "x": 0,
+      "y": 663,
+      "width": 1425,
+      "height": 926
+    },
+    {
+      "selector": ".shop-product",
+      "x": -1682,
+      "y": 955,
+      "width": 346,
+      "height": 564
+    },
+    {
+      "selector": ".shop-how",
+      "x": 0,
+      "y": 1589,
+      "width": 1425,
+      "height": 575
+    },
+    {
+      "selector": ".shop-end",
+      "x": 0,
+      "y": 2164,
+      "width": 1425,
+      "height": 245
+    },
+    {
+      "selector": ".footer-shell",
+      "x": 0,
+      "y": 2409,
+      "width": 1425,
+      "height": 261
+    }
+  ]
+}

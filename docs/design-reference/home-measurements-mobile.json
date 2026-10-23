@@ -1,0 +1,258 @@
+{
+  "reference": [
+    {
+      "selector": ".site-header",
+      "x": 0,
+      "y": 0,
+      "width": 375,
+      "height": 61
+    },
+    {
+      "selector": ".nav-pill",
+      "x": 8,
+      "y": 10,
+      "width": 359,
+      "height": 45
+    },
+    {
+      "selector": ".hero-carousel",
+      "x": 8,
+      "y": 65,
+      "width": 359,
+      "height": 153
+    },
+    {
+      "selector": ".brands-section",
+      "x": 0,
+      "y": 231,
+      "width": 375,
+      "height": 107
+    },
+    {
+      "selector": ".skills-section",
+      "x": 0,
+      "y": 338,
+      "width": 375,
+      "height": 268
+    },
+    {
+      "selector": ".skills-carousel-shell",
+      "x": 9,
+      "y": 397,
+      "width": 357,
+      "height": 170
+    },
+    {
+      "selector": ".skill-card",
+      "x": -1096,
+      "y": 397,
+      "width": 218,
+      "height": 170
+    },
+    {
+      "selector": ".packaging-section",
+      "x": 0,
+      "y": 605,
+      "width": 375,
+      "height": 475
+    },
+    {
+      "selector": ".packaging-project",
+      "x": -729,
+      "y": 774,
+      "width": 374,
+      "height": 285
+    },
+    {
+      "selector": ".menus-section",
+      "x": 0,
+      "y": 1080,
+      "width": 375,
+      "height": 2651
+    },
+    {
+      "selector": ".illustration-section",
+      "x": 0,
+      "y": 3731,
+      "width": 375,
+      "height": 447
+    },
+    {
+      "selector": ".illustration-intro",
+      "x": 8,
+      "y": 3741,
+      "width": 359,
+      "height": 228
+    },
+    {
+      "selector": ".social-section",
+      "x": 0,
+      "y": 4178,
+      "width": 375,
+      "height": 478
+    },
+    {
+      "selector": ".interior-section",
+      "x": 0,
+      "y": 4661,
+      "width": 375,
+      "height": 210
+    },
+    {
+      "selector": ".testimonials-section",
+      "x": 0,
+      "y": 4871,
+      "width": 375,
+      "height": 214
+    },
+    {
+      "selector": ".shop-feature-section",
+      "x": 0,
+      "y": 5085,
+      "width": 375,
+      "height": 432
+    },
+    {
+      "selector": ".footer-shell",
+      "x": 0,
+      "y": 5517,
+      "width": 375,
+      "height": 290
+    },
+    {
+      "selector": ".side-index",
+      "x": 213,
+      "y": 727,
+      "width": 150,
+      "height": 37
+    }
+  ],
+  "revised": [
+    {
+      "selector": ".site-header",
+      "x": 0,
+      "y": 0,
+      "width": 375,
+      "height": 60
+    },
+    {
+      "selector": ".nav-pill",
+      "x": 8,
+      "y": 10,
+      "width": 359,
+      "height": 44
+    },
+    {
+      "selector": ".hero-carousel",
+      "x": 8,
+      "y": 64,
+      "width": 359,
+      "height": 153
+    },
+    {
+      "selector": ".brands-section",
+      "x": 0,
+      "y": 230,
+      "width": 375,
+      "height": 107
+    },
+    {
+      "selector": ".skills-section",
+      "x": 0,
+      "y": 337,
+      "width": 375,
+      "height": 268
+    },
+    {
+      "selector": ".skills-carousel-shell",
+      "x": 9,
+      "y": 396,
+      "width": 357,
+      "height": 170
+    },
+    {
+      "selector": ".skill-card",
+      "x": -1096,
+      "y": 396,
+      "width": 218,
+      "height": 170
+    },
+    {
+      "selector": ".packaging-section",
+      "x": 0,
+      "y": 604,
+      "width": 375,
+      "height": 475
+    },
+    {
+      "selector": ".packaging-project",
+      "x": -729,
+      "y": 773,
+      "width": 374,
+      "height": 285
+    },
+    {
+      "selector": ".menus-section",
+      "x": 0,
+      "y": 1079,
+      "width": 375,
+      "height": 2651
+    },
+    {
+      "selector": ".illustration-section",
+      "x": 0,
+      "y": 3730,
+      "width": 375,
+      "height": 447
+    },
+    {
+      "selector": ".illustration-intro",
+      "x": 8,
+      "y": 3740,
+      "width": 359,
+      "height": 228
+    },
+    {
+      "selector": ".social-section",
+      "x": 0,
+      "y": 4177,
+      "width": 375,
+      "height": 478
+    },
+    {
+      "selector": ".interior-section",
+      "x": 0,
+      "y": 4660,
+      "width": 375,
+      "height": 210
+    },
+    {
+      "selector": ".testimonials-section",
+      "x": 0,
+      "y": 4870,
+      "width": 375,
+      "height": 214
+    },
+    {
+      "selector": ".shop-feature-section",
+      "x": 0,
+      "y": 5084,
+      "width": 375,
+      "height": 431
+    },
+    {
+      "selector": ".footer-shell",
+      "x": 0,
+      "y": 5515,
+      "width": 375,
+      "height": 290
+    },
+    {
+      "selector": ".side-index",
+      "x": 213,
+      "y": 727,
+      "width": 150,
+      "height": 37
+    }
+  ]
+}

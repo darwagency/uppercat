@@ -54,3 +54,15 @@ test('local navigation anchors resolve and assigned local media files exist', ()
     assert.ok(existsSync(resolve('public', `.${src}`)), `${key}: missing ${src}`);
   }
 });
+
+test('the HTML reference keeps its layout and does not acquire additional navigation', () => {
+  assert.doesNotMatch(home, /class="(?:hero-copy|hero-ornament|rail-toolbar|project-card-caption|footer-invite|testimonial-empty|section-star)"/);
+  assert.doesNotMatch(shop, /class="(?:rail-toolbar|catalog-notice|shop-topline|footer-invite)"/);
+  assert.match(home, /class="menu-scroll-track"/);
+  assert.match(home, /class="skills-carousel-shell"/);
+  assert.match(home, /class="side-index-items"/);
+  assert.equal((home.match(/class="brand-logo"/g) || []).length, 10);
+  assert.equal((home.match(/class="testimonial"/g) || []).length, 9);
+  assert.equal((home.match(/media-slot social-post/g) || []).length, 10);
+  assert.equal((home.match(/media-slot illustration-thumb/g) || []).length, 8);
+});

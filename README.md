@@ -29,11 +29,13 @@ El build agrega alias de URL para los payloads de segmentos que Next 16.3.8 expo
 
 WhatsApp: **+56 9 3345 7166**. Correo: **uppercat@gmail.com**. Las consultas incorporan el nombre del producto o el mensaje de la promoción. El sitio no procesa pagos.
 
-Las fotos, logos, proyectos, reseñas y productos definitivos no fueron entregados. Se muestran reservas de imagen y una colección explícitamente en preparación. `brands` y `reviews` permanecen vacíos hasta incorporar datos reales autorizados; no se publican marcas de ejemplo, testimonios ficticios, descuentos sin confirmar ni redes genéricas. El texto del hero está en HTML: entregar sus fondos sin repetir titulares dentro de la imagen.
+Las fotos, logos, proyectos, reseñas y productos definitivos no fueron entregados. Se conservan los espacios del HTML: diez marcas genéricas, nueve tarjetas de testimonio con textos explícitos de reserva y cinco productos en preparación. No se atribuyen clientes ni testimonios reales sin confirmación. Los perfiles sociales pendientes se muestran como referencias sin enlace y no se publica el descuento no confirmado del original.
+
+La carpeta HTML es la referencia visual exacta. `app/globals.css` importa sus cuatro hojas en el orden original; los componentes React conservan sus clases y geometría. No añadir barras de navegación, titulares de portada, pies de tarjetas ni secciones que no existan en el modelo. La portada es un banner de imagen 2.35:1 en escritorio y móvil, sin textos editoriales HTML superpuestos.
 
 ## Interacciones
 
-Carruseles con flechas, indicadores y pausa; detención al pasar el cursor, enfocar, ocultar la pestaña o abrir un modal. Las galerías horizontales permiten arrastre con mouse, swipe nativo y flechas de teclado al enfocar la galería. No se clonan elementos interactivos ni se atrapa el scroll vertical. El acordeón permite seleccionar sus cuatro cartas sin scroll forzado. Los modales usan `dialog`, restauran el foco y cierran con Escape o fuera del contenido. El modo de movimiento reducido evita autoplay y scroll suave.
+Carruseles con los controles visibles del modelo. La pausa adicional solo aparece al recibir foco de teclado. Las galerías mantienen loops continuos, arrastre con mouse, swipe nativo y flechas de teclado. Las copias se ocultan del árbol accesible y del orden de tabulación. El mazo de cuatro menús recupera su tramo de scroll sticky y selección directa. Los modales usan `dialog`, restauran el foco y cierran con Escape o fuera del contenido. El modo de movimiento reducido evita autoplay y scroll suave, conservando las proporciones del modelo.
 
 ## Entrega de diseño
 

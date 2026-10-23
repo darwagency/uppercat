@@ -94,14 +94,14 @@ class Wireframes(Flowable):
             c.setFillColor(colors.white if fill not in ['#eeeeee','#f0f0f0'] else INK); c.setFont('BodyBold',7); c.drawString(x+8,y+h/2-2,label)
         c.setFillColor(INK);c.roundRect(0,0,325,285,10,fill=1,stroke=0)
         box(10,249,305,26,'LOGO       HOME / SERVICIOS / FOLIO / TIENDA       CTA','#eeeeee')
-        box(10,133,305,108,'TITULAR HTML + FONDO FOTOGRÁFICO','#6b4457')
+        box(10,133,305,108,'BANNER DE IMAGEN / SIN TITULARES AÑADIDOS','#6b4457')
         box(10,100,305,25,'DISCIPLINAS O LOGOS REALES','#eeeeee')
         for i in range(3):box(10+i*103,18,97,74,'SERVICIO 0'+str(i+1),'#444444')
         c.setFillColor(INK);c.roundRect(365,0,126,285,12,fill=1,stroke=0)
         box(372,253,112,22,'LOGO     CTA    MENÚ','#eeeeee')
-        box(372,90,112,155,'HERO VERTICAL','#6b4457')
-        box(372,62,112,20,'DISCIPLINAS','#eeeeee')
-        box(372,10,89,45,'TARJETA + SWIPE','#444444')
+        box(372,178,112,65,'BANNER HORIZONTAL','#6b4457')
+        box(372,146,112,23,'MARCAS','#eeeeee')
+        box(372,50,89,80,'TARJETA + SWIPE','#444444')
 
 def frame(c, doc):
     if doc.page == 1:
@@ -114,7 +114,7 @@ def frame(c, doc):
     else:
         c.setFillColor(PINK);c.rect(0,H-8,W,8,fill=1,stroke=0)
         c.setFillColor(GRAY);c.setFont('BodyBold',8);c.drawString(48,H-34,'UPPERCAT / BRIEF PARA DISEÑO')
-        c.setFont('Body',8);c.drawRightString(W-48,H-34,'18 OCTUBRE 2026 · V1')
+        c.setFont('Body',8);c.drawRightString(W-48,H-34,'23 OCTUBRE 2026 · V2')
         c.setStrokeColor(colors.HexColor('#dddddd'));c.line(48,41,W-48,41)
         c.setFont('Body',7);c.drawString(48,27,'Portafolio + catálogo  /  Documento de trabajo')
         c.drawRightString(W-48,27,f'{doc.page:02d}')
@@ -126,7 +126,7 @@ story.append(para('BRIEF DE<br/>DISEÑO WEB', 'CoverTitle2'))
 story.append(Spacer(1,15))
 story.append(para('Portafolio creativo + catálogo de productos.<br/>Guía de dirección visual, imágenes, contenido<br/>y entrega para completar la web.', 'CoverBody2'))
 story.append(Spacer(1,28))
-story.append(para('18 OCTUBRE 2026 / VERSIÓN 1<br/>Base funcional: Next.js + React + TypeScript<br/>Artista: Uppercat', 'CoverBody2'))
+story.append(para('23 OCTUBRE 2026 / VERSIÓN 2<br/>Fidelidad al HTML original de referencia<br/>Base funcional: Next.js + React + TypeScript', 'CoverBody2'))
 story.append(Spacer(1,26))
 story.append(para('60 espacios de imagen identificados.<br/>Las medidas son recomendaciones de exportación.<br/>Las capturas muestran la implementación actual,<br/>con reservas donde faltan los archivos definitivos.', 'CoverBody2'))
 
@@ -151,7 +151,7 @@ table(['Orden','Inicio /','Objetivo de diseño'],[
  ('02','Disciplinas / marcas','Contexto rápido. Logos solo con autorización.'),
  ('03','Habilidades','Cinco servicios; tres tarjetas visibles en escritorio.'),
  ('04','Packaging','Dos mosaicos con seis piezas en total.'),
- ('05','Diseño de menú','Cuatro cartas accesibles mediante acordeón.'),
+ ('05','Diseño de menú','Mazo sticky de cuatro cartas, con scroll y selección directa.'),
  ('06','Ilustración','Obra principal + ocho miniaturas + ampliación.'),
  ('07','Redes sociales','Diez piezas, dos filas de cinco, ampliables.'),
  ('08','Diseño interior','Una imagen panorámica con titular superpuesto.'),
@@ -160,7 +160,7 @@ table(['Orden','Inicio /','Objetivo de diseño'],[
 ], [40,164,295])
 sub('Tienda /tienda')
 p('Header compartido → presentación + tres destacados + audio manual → cinco productos → tres pasos de compra → contacto. Los destacados y las tarjetas reutilizan shop1, shop2 y shop3; no requieren imágenes duplicadas.')
-small('El índice lateral enlaza nueve anclas del inicio. En anchos habituales se despliega con el botón ÍNDICE para evitar cubrir las piezas. El botón de WhatsApp permanece accesible en ambas páginas.')
+small('El índice lateral reproduce la lista flotante sin caja del HTML en escritorio. En móvil se despliega con el botón ÍNDICE sobre WhatsApp. No añadir menús o barras de galería que no existan en la referencia.')
 
 # 4
 title(4,'DIRECCIÓN VISUAL','La identidad debe sentirse artística, directa y con carácter. El protagonismo lo tienen las obras; las formas y el color acompañan su lectura.')
@@ -169,34 +169,34 @@ sub('Tipografía y jerarquía')
 table(['Nivel','Implementación actual','Criterio para el diseño'],[
  ('Titulares','Anton, mayúsculas, interlineado cercano a 1.05','Usar bloques breves. Evitar párrafos en tipografía condensada.'),
  ('Texto y UI','DM Sans, pesos 400 a 800','Texto legible, etiquetas pequeñas con espaciado; conservar contraste.'),
- ('Escala desktop','Hero hasta 124 px; títulos hasta 155 px','Los tamaños son fluidos y se ajustan al ancho.'),
- ('Escala móvil','Hero desde 52 px; texto 12 a 14 px','Revisar palabras largas y mantener CTA visibles.'),
+ ('Escala desktop','Portada solo de imagen; packaging hasta 170 px','Conservar las escalas fluidas del CSS original.'),
+ ('Escala móvil','Títulos desde 25 px según sección','No convertir la portada en una presentación de texto.'),
 ], [89,190,220])
 sub('Formas y composición')
-bullets(['Navegación blanca en cápsula, tarjetas redondeadas y flechas circulares. Radios de 13 a 30 px según componente.', 'Retícula generosa: ancho de contenido máximo de 1320 px y portada máxima de 1440 px. Márgenes móviles desde 18 px; portada y header usan 12 px.', 'Usar el asterisco como acento provisional. El logo tipográfico actual y el icono U son provisionales; entregar identidad aprobada antes de considerarlos definitivos.'])
+bullets(['Navegación blanca en cápsula, tarjetas redondeadas y flechas circulares, exactamente donde aparecen en el HTML.', 'Contenido máximo de 1320 px y portada máxima de 1440 px. Margen general clamp(12px, 2.25vw, 32px); en móvil menor a 520 px, 8 px.', 'Conservar la calavera entre servicios y packaging y las formas orgánicas de ilustración. El logo tipográfico Uppercat y el icono U son provisionales.'])
 small('Las fuentes están alojadas localmente con sus licencias OFL. Si se cambian por otras, entregar fuentes web y licencia correspondiente. Los textos sobre fotografías necesitan una zona tranquila y contraste suficiente.')
 
 # 5
 title(5,'RESPONSIVE Y COMPOSICIÓN','El mismo contenido debe funcionar en escritorio y móvil. Estas maquetas explican la organización, no sustituyen el archivo editable de diseño.')
 story.append(Wireframes());story.append(Spacer(1,16))
 table(['Ancho de referencia','Comportamiento requerido'],[
- ('1440 px escritorio','Tres servicios y tres productos por vista; hero horizontal; ilustración en dos columnas.'),
+ ('1440 px escritorio','Tres servicios; catálogo horizontal; portada 2.35:1 e ilustración en dos columnas.'),
  ('768 px tableta','Ajustar retícula y encabezados; catálogo con dos productos por vista.'),
- ('390 px móvil','Menú desplegable; hero alto; ilustración apilada; catálogo con una tarjeta y parte de la siguiente.'),
+ ('390 px móvil','Menú desplegable; portada horizontal 2.35:1; ilustración en dos columnas; catálogo con swipe.'),
  ('320 px mínimo','Sin desplazamiento horizontal de toda la página. Los carruseles conservan su scroll interno.'),
 ], [135,364])
 p('Preparar diseños al menos en 1440 y 390 px. Revisar además 320 y 768 px. No convertir la web en una sola imagen larga: títulos, enlaces y controles permanecen como elementos HTML.')
 small('Los archivos actuales usan centrado de imagen. Si una foto exige encuadre distinto en móvil, entregar un recorte adicional y señalar que su integración responsive deberá añadirse; hoy no existe una segunda clave móvil en el manifiesto.')
 
 # 6
-title(6,'HEADER Y PORTADAS','Tres fondos distintos para presentar el universo de Uppercat. Cada banner inicia una conversación con un mensaje específico, sin mezclar los controles con el enlace de consulta.')
-table(['Clave','Dirección de la pieza','Texto HTML actual'],[
- ('hero1','Universo creativo. Paleta ciruela y rosa. Imagen o composición que resuma la firma del artista.','IDEAS CON CARÁCTER. / Diseño que conecta tu marca con su propia forma de ver el mundo.'),
- ('hero2','Identidad aplicada: packaging o carta. Paleta azul grisácea.','TU MARCA, OTRA MIRADA. / Del packaging a la carta. Una identidad en cada detalle.'),
- ('hero3','Ilustración o arte. Paleta tierra con acento vibrante.','TRAZOS QUE DICEN ALGO. / Ilustración, contenido y espacios con una voz propia.'),
+title(6,'HEADER Y PORTADAS','La referencia contiene tres banners de imagen, sin los titulares ni las bajadas añadidos en la primera migración. Mantener esta composición y sus controles originales.')
+table(['Clave','Espacio de referencia','Estado actual'],[
+ ('hero1','Banner principal; fondo ciruela del modelo.','IMAGEN DE PORTADA 01. Archivo pendiente, sin texto editorial superpuesto.'),
+ ('hero2','Segundo banner; fondo azul grisáceo.','IMAGEN DE PORTADA 02. Archivo pendiente, con mensaje propio para consultar.'),
+ ('hero3','Tercer banner; fondo ocre.','IMAGEN DE PORTADA 03. Archivo pendiente, con mensaje propio para consultar.'),
 ], [50,225,224])
 sub('Producción de imagen')
-bullets(['Tres archivos WebP o AVIF, recomendación 2880 × 1800 px como master adaptable. Referencia de vista desktop cercana a 2.3:1; en móvil la imagen se recorta a un bloque vertical.', 'Dejar aire en la mitad izquierda para el titular y la bajada. Reservar aproximadamente 90 px inferiores del bloque para controles. No exportar botones, textos del hero o flechas dentro del fondo.', 'Colocar el motivo principal donde sobreviva al recorte central. Entregar una prueba a 390 px; preferir composiciones abstractas o escenas amplias si no se integra una variante móvil.', 'Peso objetivo hasta 450 KB por portada. Exportar en sRGB, sin marcas de agua ni texto accidental de mockup.'])
+bullets(['Tres archivos WebP o AVIF de 2880 × 1225 px, proporción 2.35:1. La proporción se conserva también en móvil, tal como en el HTML.', 'No reservar espacio para un titular HTML que no existe en la referencia. La pieza puede contener su propia composición gráfica aprobada. No incrustar flechas, puntos de navegación o botones.', 'Reservar las zonas laterales para flechas y la zona inferior para indicadores. En móvil se ocultan las flechas y permanecen los puntos. Verificar la legibilidad de cualquier texto gráfico a 390 px.', 'Peso objetivo hasta 450 KB por portada. Exportar en sRGB, sin marcas de agua ni texto accidental de mockup.'])
 sub('Identidad pendiente')
 p('Entregar wordmark Uppercat en SVG, versión clara y oscura, zona de seguridad y favicon cuadrado. El SVG del logo debe quedar limpio de texto editable externo o dependencias. La integración del logo final se realiza en el header y footer, fuera de las 60 claves de fotografía.')
 
@@ -222,9 +222,9 @@ table(['Claves','Recomendación','Contenido'],[
  ('illustration1 a illustration8','1600 px en el lado largo; mínimo 1200 px','Ocho obras distintas. Conservar un encuadre central útil para la miniatura.'),
  ('illustrationArt, opcional','1400 × 1600 px, fondo transparente','Gráfica decorativa del encabezado. Dejar legible el título ILUSTRACIÓN en HTML.'),
 ], [123,172,204])
-p('El visualizador y las miniaturas usan recorte cover; el modal usa contain y conserva la proporción original. Entregar un master sin recorte para ampliación y evitar firmas o detalles importantes pegados al borde. La implementación actual reutiliza el mismo archivo en ambos contextos.')
+p('El visualizador principal usa contain, igual que el HTML original; las miniaturas usan cover. El modal conserva la proporción completa. Mantener el bloque gráfico y el visualizador lado a lado también en móvil. No añadir tarjetas con títulos o barras de navegación debajo de las obras.')
 sub('Redes sociales / social1 a social10')
-bullets(['Diez diseños: social1 a social5 en la fila superior; social6 a social10 en la inferior. Las filas inician en sentidos opuestos y rebotan en los extremos; no se duplican las tarjetas.', 'Exportar 1080 × 1350 px, proporción 4:5. Si una pieza es cuadrada, mantenerla completa dentro de un lienzo 4:5 o señalar el recorte aprobado.', 'Cada modal necesita título, marca/campaña, objetivo, año y descripción de 30 a 60 palabras. No escribir esos datos como una placa adicional sobre la obra.', 'No confundir una pieza de portafolio con un perfil social oficial. Los enlaces de Instagram, Behance o TikTok solo se habilitan cuando se reciban las URL reales.'])
+bullets(['Orden original: social1, social2, social3, social4 y social8 arriba; social5, social6, social7, social9 y social10 abajo. Dos loops continuos en sentidos opuestos, sin nuevas barras de controles visibles.', 'Fila superior casi cuadrada (1.06:1); fila inferior apaisada (1.38:1). Exportar 1600 × 1510 px y 1800 × 1304 px respectivamente. Las imágenes se amplían completas en el modal.', 'Cada modal necesita título, marca/campaña, objetivo, año y descripción de 30 a 60 palabras. No añadir esa ficha como pie visible a cada imagen.', 'No confundir una pieza de portafolio con un perfil social oficial. Los enlaces sociales solo se habilitan cuando se reciban las URL reales.'])
 small('Peso objetivo: 250 KB por pieza social y 350 KB por ilustración. Una imagen de modal puede llegar a 500 KB si el detalle visual lo justifica.')
 
 # 9
@@ -233,10 +233,10 @@ sub('Diseño interior / interior')
 p('Una escena amplia de 2600 × 1500 px. Mostrar profundidad, materiales y un punto de interés claro. Evitar verticales deformadas y luces quemadas. El texto DISEÑO INTERIOR se superpone a la izquierda: entregar esa zona con poco ruido visual. El fondo se recorta con cover.')
 sub('Marcas / brand1 a brand10')
 p('Hasta diez logos autorizados. Exportar SVG preferentemente o PNG/WebP transparente de 800 × 300 px. Misma escala óptica y área segura, sin estirar logos para igualar sus dimensiones. La banda usa ajuste contain; la cantidad efectiva depende de las marcas confirmadas.')
-small('Actualmente brands está vacío: se ve una banda de disciplinas, no logos de clientes de ejemplo. Para habilitar cada marca se necesita su nombre, archivo y autorización.')
+small('Se conservan los diez espacios de marca del HTML, identificados MARCA 01 a MARCA 10 mientras faltan datos. No se usan los nombres de clientes de ejemplo como relaciones confirmadas.')
 sub('Testimonios / review1 a review9')
 p('Hasta nueve fotos de 400 × 400 px. Retrato centrado, luz uniforme y recorte circular. Por testimonio se requiere: cita real de 20 a 45 palabras, nombre, marca, relación con el proyecto y autorización de publicación.')
-small('Actualmente reviews está vacío. La sección muestra un mensaje de reserva y no atribuye opiniones a personas ficticias. Al recibir reseñas se activa el carrusel desde el archivo de contenido.')
+small('Se mantienen las nueve tarjetas del HTML, con textos explícitos de reserva y NOMBRE / MARCA. No se atribuyen opiniones inventadas a personas reales. Reemplazar cada tarjeta al recibir una reseña autorizada.')
 sub('Mascota o firma / footerMascot')
 p('Pieza opcional de 800 × 800 px con transparencia para sustituir el sello tipográfico del footer. Dibujar una silueta legible en tamaños pequeños. Mantener margen de seguridad de 10% y entregar vector editable. Hasta recibirla, el sello es una composición tipográfica de Uppercat.')
 
@@ -250,8 +250,8 @@ table(['Pieza','Uso en la web','Entrega requerida'],[
 sub('Fotografía de producto')
 bullets(['Exportar cinco imágenes de 1600 × 1600 px. Fondo neutro o transparente, objeto completo centrado y margen de 12% a 15%. La web usa contain para no cortar el producto.', 'Mantener iluminación, temperatura, sombras y posición de cámara coherentes. Evitar accesorios que parezcan incluidos si no se venden con el artículo.', 'Entregar las fotos sin precio, descuento o botón incrustado. El nombre y el CTA se muestran como HTML y el mensaje de WhatsApp se genera desde la ficha.', 'Peso objetivo hasta 300 KB por imagen. Adjuntar master de alta resolución para futuros recortes.'])
 sub('Estado comercial')
-p('Los cinco nombres actuales son Producto 01 a Producto 05 y la colección se indica en preparación. No presentar estos espacios como stock confirmado. Definir también despacho, retiro, tiempos de producción, personalización y cambios para responder las consultas de forma consistente.')
-small('La huincha actual dice HECHO CON IDEAS PROPIAS / HECHO POR UPPERCAT. Si se aprueba una promoción, entregar condiciones, vigencia y productos incluidos antes de reemplazarla. La música es manual y la pista incluida es una demostración de 25,6 segundos en loop, según el README original.')
+p('Los cinco nombres actuales son Producto 01 a Producto 05 y sus descripciones indican que son fichas de referencia por completar. No presentar estos espacios como stock confirmado. Definir también despacho, retiro, tiempos de producción, personalización y cambios para responder las consultas de forma consistente.')
+small('La huincha conserva forma, altura y movimiento del HTML, con texto DESCUBRE LA COLECCIÓN UPPERCAT mientras no se confirme la promoción del 10%. La música es manual y su pista es una demostración de 25,6 segundos en loop, según el README original.')
 
 # 11
 title(11,'TEXTOS Y FICHAS EDITABLES','Entregar los textos en un documento o planilla, asociados a las claves de imagen. El equipo debe poder actualizar contenido sin abrir archivos de diseño.')
@@ -273,12 +273,12 @@ p('Nombre: Uppercat.<br/>WhatsApp: +56 9 3345 7166.<br/>Correo: uppercat@gmail.c
 # 12
 title(12,'ESTÁNDAR DE ARCHIVOS','Las medidas siguientes son recomendaciones de producción para la retícula actual. No son medidas de impresión ni tamaños rígidos del navegador.')
 table(['Familia','Cantidad','Master sugerido','Peso web objetivo'],[
- ('Portadas','3','2880 × 1800 px','450 KB / archivo'),
+ ('Portadas','3','2880 × 1225 px, 2.35:1','450 KB / archivo'),
  ('Logos de clientes','Hasta 10','SVG o 800 × 300 px','50 KB'),
  ('Packaging','6','2 verticales 1400 × 1800;<br/>4 horizontales 1600 × 1000','350 KB'),
  ('Cartas','4','2000 × 1200 px','350 KB'),
  ('Ilustraciones','9','1600 a 1800 px lado largo','350 KB; modal hasta 500'),
- ('Redes sociales','10','1080 × 1350 px','250 KB'),
+ ('Redes sociales','10','5 casi cuadradas;<br/>5 apaisadas, 1.38:1','250 KB'),
  ('Interior','1','2600 × 1500 px','450 KB'),
  ('Reseñas','Hasta 9','400 × 400 px','60 KB'),
  ('Productos','5','1600 × 1600 px','300 KB'),
@@ -294,7 +294,7 @@ def inventory(keys, purpose):
 # 13
 title(13,'INVENTARIO / A','Asignar los nombres de archivo a estas claves exactas. Un campo vacío mantiene la reserva de imagen; no genera una solicitud a un archivo inexistente.')
 rows=[]
-rows += inventory([f'hero{i}' for i in range(1,4)],lambda k:'Portada '+k[-1]+'; fondo con texto HTML superpuesto.')
+rows += inventory([f'hero{i}' for i in range(1,4)],lambda k:'Portada '+k[-1]+'; banner 2.35:1 sin titulares HTML añadidos.')
 rows += inventory([f'brand{i}' for i in range(1,11)],lambda k:'Logo autorizado de cliente; SVG preferido.')
 rows += inventory([f'pack{i}' for i in range(1,7)],lambda k:'Mosaico '+('1' if int(k[4:])<=3 else '2')+'; '+('vertical.' if k in ['pack1','pack4'] else 'horizontal.'))
 rows += inventory([f'menu{i}' for i in range(1,5)],lambda k:'Fotografía del proyecto Carta '+k[-1]+'.')
@@ -317,7 +317,7 @@ rows+=inventory([f'review{i}' for i in range(1,10)],lambda k:'Retrato del testim
 rows+=inventory(['packHeader','illustrationArt','footerMascot'],lambda k:{'packHeader':'Gráfica opcional en encabezado de packaging.','illustrationArt':'Gráfica opcional en encabezado de ilustración.','footerMascot':'Firma o mascota opcional del footer.'}[k])
 table(['Clave','Archivo propuesto','Ubicación y criterio'],rows,[102,133,264],compact=True)
 sub('Balance del inventario')
-p('Página A: 23 claves. Página B: 20 claves. Página C: 17 claves. Total: <b>60</b>. De ellas, 19 corresponden a marcas y testimonios que permanecen sin publicar hasta tener contenido real. Las tres gráficas de encabezado o firma son opcionales.')
+p('Página A: 23 claves. Página B: 20 claves. Página C: 17 claves. Total: <b>60</b>. De ellas, 19 corresponden a marcas y testimonios con datos reales pendientes; se mantienen sus espacios de referencia. Las tres gráficas de encabezado o firma son opcionales.')
 small('Logo principal, favicon y variante de imagen móvil son entregables complementarios, fuera de estas 60 claves. La pista Lo-Fi existente es un archivo de audio aparte.')
 
 # 16
@@ -334,11 +334,11 @@ for filename in ['home-mobile.png','shop-mobile.png']:
     path=REF/filename
     if path.exists():
         with PILImage.open(path) as im: iw,ih=im.size
-        scale=min(234/iw,470/ih)
+        scale=min(234/iw,420/ih)
         imgs.append(Image(str(path),width=iw*scale,height=ih*scale))
     else: imgs.append(para('Captura móvil pendiente.','Small2'))
 t=Table([imgs],colWidths=[249.5,249.5]);t.setStyle(TableStyle([('VALIGN',(0,0),(-1,-1),'TOP'),('LEFTPADDING',(0,0),(-1,-1),0)]));story.append(t);story.append(Spacer(1,18))
-table(['Inicio','Tienda'],[('La portada prioriza el mensaje. La banda de disciplinas se adapta al ancho y el índice se despliega desde abajo.','El reproductor ocupa su propia línea. El destacado pasa bajo el título; el catálogo permite swipe horizontal.')],[249.5,249.5])
+table(['Inicio','Tienda'],[('La portada conserva su formato horizontal. Las marcas, servicios e ilustración mantienen la composición móvil del HTML.','El reproductor ocupa su propia línea. El destacado pasa bajo el título; el catálogo permite swipe horizontal.')],[249.5,249.5])
 small('Antes de aprobar cada imagen, probarla tanto en el bloque de escritorio como en el móvil. El recorte central automático puede desplazar el motivo o cortar bordes de una composición.')
 
 # 18
