@@ -7,7 +7,8 @@
 .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
 .focus-only { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); }
 .focus-only:focus-visible { position:fixed; z-index:120; width:auto; height:auto; clip-path:none; top:8px; left:8px; padding:8px 12px; background:#111; color:#fff; border:1px solid #fff; border-radius:20px; }
-.skill-card>span { white-space:pre-line; }
+.skills-loop .skill-card { min-height:0; }
+.skill-cover { display:block; width:100%; height:auto; aspect-ratio:16/15; object-fit:contain; border-radius:clamp(8px,1vw,14px); background:#fff; }
 .loop-viewport { touch-action:pan-x pan-y; }
 .media-slot { min-width:0; }
 .brand-logo .media-slot { background:transparent; width:160px; height:55px; }

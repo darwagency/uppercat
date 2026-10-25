@@ -22,6 +22,7 @@ El build agrega alias de URL para los payloads de segmentos que Next 16.3.8 expo
 ## Contenido
 
 - `data/site.ts`: identidad, contacto, promociones, servicios, fichas, productos, marcas y reseñas.
+- `public/images/skills/`: las cinco portadas de `MATERIALES`, optimizadas a WebP y asignadas por categoría en `data/site.ts`. Se muestran completas en cada tarjeta de habilidades; los títulos están incluidos en las propias imágenes.
 - `data/images.json`: los 60 espacios de imagen del documento del diseñador. Guardar archivos en `public/images/` y asignar rutas absolutas desde la web, por ejemplo `"pack1": "/images/pack1.webp"`.
 - `public/audio/lofi-original.mp3`: pista de demostración suministrada en la carpeta original. Reproducción manual, sin autoplay.
 - `public/fonts/`: Anton y DM Sans, servidas con `next/font/local` y sus licencias OFL. La web no depende de Google Fonts en tiempo de navegación.

@@ -15,11 +15,11 @@ export const sections = [
 ] as const;
 
 export const services = [
-  { title: "DISEÑO\nDE\nMENÚ", anchor: "menus", number: "01" },
-  { title: "ILUS\nTRA\nCIÓN", anchor: "ilustracion", number: "02" },
-  { title: "PACK\nAGING", anchor: "packaging", number: "03" },
-  { title: "REDES\nSOCIALES", anchor: "redes", number: "04" },
-  { title: "DISEÑO\nINTERIOR", anchor: "interior", number: "05" },
+  { title: "DISEÑO DE MENÚ", anchor: "menus", number: "01", cover: "/images/skills/menus.webp" },
+  { title: "ILUSTRACIÓN", anchor: "ilustracion", number: "02", cover: "/images/skills/ilustracion.webp" },
+  { title: "PACKAGING", anchor: "packaging", number: "03", cover: "/images/skills/packaging.webp" },
+  { title: "REDES SOCIALES", anchor: "redes", number: "04", cover: "/images/skills/redes.webp" },
+  { title: "DISEÑO INTERIOR", anchor: "interior", number: "05", cover: "/images/skills/interior.webp" },
 ];
 
 export const promotions = [
