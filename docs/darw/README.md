@@ -15,6 +15,7 @@ La nueva página conserva esa densidad visual y la exploración por secciones. R
 - Grilla asimétrica de proyectos que alterna proporciones 7/5 y 5/7.
 - Cada área tiene un formato propio: portada con selección, archivo filtrable, explorador de servicios, tira de campañas, proceso y contacto.
 - Movimiento orientado a explorar: transiciones de portada, respuestas al cursor, cambio de imágenes y desplazamiento horizontal nativo. Sin secuestrar el scroll de la página.
+- Revisión de contenido: títulos descriptivos (Proyectos, Servicios, Campañas & redes), portada compacta y eliminación de eslóganes y párrafos repetidos. Los servicios se explican con etiquetas y ejemplos visuales; el detalle de los proyectos aparece al abrirlos. El texto visible del contenido principal pasó de 463 a 246 palabras en la vista revisada.
 
 ## Componentes e interacción
 

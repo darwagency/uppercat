@@ -30,3 +30,47 @@
 /* Keep intrinsic graphic sizes inside narrow grid tracks. */
 .studio>div,.contactGrid>div,.serviceExplorer>div{min-width:0}
 @media(max-width:760px){.studio,.contactGrid,.serviceExplorer{grid-template-columns:minmax(0,1fr)}.studioGraphic>span:not(.processStar){font-size:clamp(24px,8vw,37px)}.processStar{font-size:clamp(65px,22vw,110px)}}
+
+/* Short labels keep the work at the front of each section. */
+.heroTitle{align-items:center;padding-block:28px 34px;gap:24px}
+.heroTitle h1{font-size:clamp(45px,5.5vw,92px);line-height:1.04;letter-spacing:-.065em}
+.heroTitle h1>span,.heroTitle h1>em{white-space:nowrap}
+.heroTitle>.textLink{flex-shrink:0;font-size:12px;gap:14px}
+.heroTitle h1 em{letter-spacing:-.065em;width:fit-content}
+.sectionHead{justify-content:flex-start;align-items:baseline;gap:20px}
+.sectionNumber{font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
+.services .sectionNumber{color:#b8bcae}
+.largeArrow{margin-left:auto;font-size:64px}
+.sectionHead h2{font-size:clamp(36px,3.9vw,64px)}
+.work{padding-block:72px}
+.services{padding-block:70px}
+.contentSection{padding-top:70px}
+.characterName{font-size:clamp(32px,3.5vw,58px);top:23%}
+.characterName em{display:block}
+.serviceDetail>div{margin-top:0}
+.serviceVisual>img{height:calc(100% - 108px)}
+.railToolbar{justify-content:flex-end;margin-top:-62px;margin-bottom:28px}
+.railToolbar>span{display:none}
+.studio{padding-block:70px}
+.studioIntro>p{margin-block:20px}
+.contact h2{font-size:clamp(44px,6vw,92px)}
+.footerTop>a:first-child{margin-right:auto}
+.dialogInfo h2{margin-bottom:20px}
+@media(max-width:1050px){.heroTitle{align-items:flex-end}.heroTitle h1>em{display:block}}
+@media(max-width:760px){
+  .hero{padding-top:22px;padding-bottom:14px}
+  .heroTitle{padding-block:20px 24px;display:block}
+  .heroTitle h1{font-size:clamp(46px,10.5vw,72px);line-height:1.03}
+  .heroTitle>.textLink{margin-top:12px;padding-block:5px;font-size:11px}
+  .heroTitle h1>em{display:block}
+  .characterName{top:27%;font-size:42px}
+  .sectionHead,.services .sectionHead{flex-direction:row;align-items:baseline;gap:14px;margin-bottom:25px}
+  .sectionHead h2,.services .sectionHead h2{font-size:clamp(32px,7.4vw,52px)}
+  .sectionNumber{font-size:9px}
+  .largeArrow{font-size:40px}
+  .work,.services,.studio{padding-block:48px}
+  .contentSection{padding-top:48px}
+  .railToolbar{margin-top:0;margin-bottom:15px}
+  .studio{gap:26px}
+  .contact h2{font-size:clamp(46px,10.5vw,72px)}
+}
