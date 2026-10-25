@@ -10,6 +10,12 @@ const fanStyle = (index: number): CSSProperties => {
   return { "--fan-x": `${-(11 - Math.abs(distance) * 1.35)}px`, "--fan-y": `${distance * 1.6}px`, "--fan-angle": `${distance * .2}deg`, "--fan-delay": `${Math.abs(distance) * 12}ms` } as CSSProperties;
 };
 
+export function SiteFrame({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+  if (pathname === "/principal-2" || pathname.startsWith("/principal-2/")) return <>{children}</>;
+  return <><Header />{children}<Footer /><ContactFloat /></>;
+}
+
 export function Header() {
   const shop = usePathname().startsWith("/tienda");
   const [open, setOpen] = useState(false);

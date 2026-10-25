@@ -1,0 +1,182 @@
+[
+  {
+    "name": "darw-logo",
+    "source": "https://darw.cl/LOGOTIPO%20DARW%20BLANCO%20VECTORIAL.svg",
+    "file": "/images/darw/darw-logo.svg",
+    "bytes": 1409
+  },
+  {
+    "name": "burger-hero",
+    "source": "https://darw.cl/images/gastronomia-cases/rural-burger/live/cheese-burger.webp",
+    "file": "/images/darw/burger-hero.webp",
+    "bytes": 212052
+  },
+  {
+    "name": "burger-packaging",
+    "source": "https://darw.cl/images/gastronomia-cases/rural-burger/live/packaging-scene-v2.webp",
+    "file": "/images/darw/burger-packaging.webp",
+    "bytes": 282110
+  },
+  {
+    "name": "burger-box",
+    "source": "https://darw.cl/images/gastronomia-cases/rural-burger/packaging-box.webp",
+    "file": "/images/darw/burger-box.webp",
+    "bytes": 185068
+  },
+  {
+    "name": "burger-bag",
+    "source": "https://darw.cl/images/gastronomia-cases/rural-burger/packaging-bag.webp",
+    "file": "/images/darw/burger-bag.webp",
+    "bytes": 86802
+  },
+  {
+    "name": "burger-brand",
+    "source": "https://darw.cl/images/gastronomia-cases/rural-burger/brand-03.webp",
+    "file": "/images/darw/burger-brand.webp",
+    "bytes": 155746
+  },
+  {
+    "name": "burger-type",
+    "source": "https://darw.cl/images/gastronomia-cases/rural-burger/brand-04.webp",
+    "file": "/images/darw/burger-type.webp",
+    "bytes": 246458
+  },
+  {
+    "name": "burger-character",
+    "source": "https://darw.cl/images/gastronomia-cases/rural-burger/mascot-burger.webp",
+    "file": "/images/darw/burger-character.webp",
+    "bytes": 53010
+  },
+  {
+    "name": "burger-launch-1",
+    "source": "https://darw.cl/images/gastronomia-cases/rural-burger/launch-01.png",
+    "file": "/images/darw/burger-launch-1.webp",
+    "bytes": 162850
+  },
+  {
+    "name": "burger-launch-2",
+    "source": "https://darw.cl/images/gastronomia-cases/rural-burger/launch-02.png",
+    "file": "/images/darw/burger-launch-2.webp",
+    "bytes": 147752
+  },
+  {
+    "name": "burger-logo",
+    "source": "https://darw.cl/images/home-case-logos/rural-burger-cover.webp",
+    "file": "/images/darw/burger-logo.webp",
+    "bytes": 55116
+  },
+  {
+    "name": "poke-logo",
+    "source": "https://darw.cl/images/home-case-logos/ruralpoke-cover.webp",
+    "file": "/images/darw/poke-logo.webp",
+    "bytes": 26260
+  },
+  {
+    "name": "poke-character",
+    "source": "https://darw.cl/images/ruralpoke-portfolio/character-01.webp",
+    "file": "/images/darw/poke-character.webp",
+    "bytes": 98296
+  },
+  {
+    "name": "poke-character-2",
+    "source": "https://darw.cl/images/ruralpoke-portfolio/character-02.webp",
+    "file": "/images/darw/poke-character-2.webp",
+    "bytes": 76022
+  },
+  {
+    "name": "poke-campaign",
+    "source": "https://darw.cl/images/ruralpoke-portfolio/hero-anywhere.webp",
+    "file": "/images/darw/poke-campaign.webp",
+    "bytes": 131834
+  },
+  {
+    "name": "poke-may-1",
+    "source": "https://darw.cl/images/ruralpoke-portfolio/may-01.webp",
+    "file": "/images/darw/poke-may-1.webp",
+    "bytes": 132198
+  },
+  {
+    "name": "poke-may-2",
+    "source": "https://darw.cl/images/ruralpoke-portfolio/may-02.webp",
+    "file": "/images/darw/poke-may-2.webp",
+    "bytes": 133532
+  },
+  {
+    "name": "poke-birthday",
+    "source": "https://darw.cl/images/ruralpoke-portfolio/birthday-01.webp",
+    "file": "/images/darw/poke-birthday.webp",
+    "bytes": 131022
+  },
+  {
+    "name": "poke-story",
+    "source": "https://darw.cl/images/ruralpoke-portfolio/daily-open.webp",
+    "file": "/images/darw/poke-story.webp",
+    "bytes": 159722
+  },
+  {
+    "name": "poke-cyber",
+    "source": "https://darw.cl/images/ruralpoke-portfolio/cyber-01.webp",
+    "file": "/images/darw/poke-cyber.webp",
+    "bytes": 172310
+  },
+  {
+    "name": "fusion-colors",
+    "source": "https://darw.cl/images/gastronomia-cases/fusion-sushi/brand-0006.webp",
+    "file": "/images/darw/fusion-colors.webp",
+    "bytes": 110264
+  },
+  {
+    "name": "fusion-application",
+    "source": "https://darw.cl/images/gastronomia-cases/fusion-sushi/brand-0013.webp",
+    "file": "/images/darw/fusion-application.webp",
+    "bytes": 55904
+  },
+  {
+    "name": "fusion-story",
+    "source": "https://darw.cl/images/gastronomia-cases/fusion-sushi/story-delivery.webp",
+    "file": "/images/darw/fusion-story.webp",
+    "bytes": 168338
+  },
+  {
+    "name": "fusion-logo",
+    "source": "https://darw.cl/images/gastronomia-cases/fusion-sushi/brand-0001.webp",
+    "file": "/images/darw/fusion-logo.webp",
+    "bytes": 29386
+  },
+  {
+    "name": "equilibrium-logo",
+    "source": "https://darw.cl/images/home-case-logos/equilibrium-cover.webp",
+    "file": "/images/darw/equilibrium-logo.webp",
+    "bytes": 24616
+  },
+  {
+    "name": "equilibrium-web",
+    "source": "https://darw.cl/work/sites/equilibrium-chonchi-2026-08-14.jpg",
+    "file": "/images/darw/equilibrium-web.webp",
+    "bytes": 67272
+  },
+  {
+    "name": "torii-web",
+    "source": "https://darw.cl/work/sites/sushi-torii-producto-2026-08-14.jpg",
+    "file": "/images/darw/torii-web.webp",
+    "bytes": 63508
+  },
+  {
+    "name": "scandrive-web",
+    "source": "https://darw.cl/work/scandrive/mockups/digital-product-workbench.webp",
+    "file": "/images/darw/scandrive-web.webp",
+    "bytes": 110888
+  },
+  {
+    "name": "monteverde-web",
+    "source": "https://darw.cl/work/sites/colegio-monte-verde-2026-08-14.jpg",
+    "file": "/images/darw/monteverde-web.webp",
+    "bytes": 90524
+  },
+  {
+    "name": "fuego-web",
+    "source": "https://darw.cl/work/sites/fuego-de-patio-2026-08-14.jpg",
+    "file": "/images/darw/fuego-web.webp",
+    "bytes": 99140
+  }
+]
