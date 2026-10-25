@@ -6,7 +6,7 @@ import { darwProjects } from '../data/darw.ts';
 const html = readFileSync('out/principal-2.html', 'utf8');
 
 test('Darw exports with its own identity and contact destination', () => {
-  assert.match(html, /<title>Darw — Marcas, web y contenido<\/title>/);
+  assert.match(html, /<title>Darw — Portafolio creativo<\/title>/);
   assert.equal((html.match(/<h1\b/g) || []).length, 1);
   assert.doesNotMatch(html, /uppercat@gmail.com|wa\.me\/56933457166|class="site-header"|class="footer-shell"/);
   assert.match(html, /wa\.me\/56926341222/);

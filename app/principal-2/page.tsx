@@ -1,31 +1,48 @@
 import type { Metadata } from "next";
-import { DarwProvider, DarwHeader, HeroShowcase, ProjectArchive, ServiceExplorer, ContentStrip, ContactStudio } from "@/components/darw/DarwExperience";
-import { darwContact } from "@/data/darw";
-import s from "./darw.module.css";
+import { PortfolioProvider, PortfolioNavigation, PortfolioCover, IdentityGallery, VisualRail, WorkTile, WebShowcase, IllustrationStage, SocialWall, PortfolioContact } from "@/components/darw/DarwPortfolio";
+import { asset } from "@/data/darw";
+import s from "./portfolio.module.css";
 
 export const metadata: Metadata = {
-  title: { absolute: "Darw — Marcas, web y contenido" },
-  description: "Estudio creativo y digital en Chile. Explora nuestros proyectos de identidad, web, ecommerce, packaging y campañas.",
+  title: { absolute: "Darw — Portafolio creativo" },
+  description: "Identidad, packaging, diseño web, ilustración y redes sociales. Portafolio de la agencia Darw, Chile.",
   applicationName: "Darw",
-  openGraph: { title: "Darw — Marcas, web y contenido", description: "Proyectos de identidad, web, packaging y campañas de Darw.", siteName: "Darw", locale: "es_CL", type: "website" },
+  openGraph: { title: "Darw — Portafolio creativo", description: "Explora los proyectos de identidad, web y comunicación de Darw.", siteName: "Darw", locale: "es_CL", type: "website" },
 };
 
+const areas = [
+  { id: "identidad", title: "IDENTIDAD", image: "burger-brand" },
+  { id: "web", title: "WEB & ECOMMERCE", image: "scandrive-web" },
+  { id: "packaging", title: "PACKAGING", image: "burger-box" },
+  { id: "redes", title: "REDES SOCIALES", image: "poke-may-1" },
+];
+
 export default function Principal2() {
-  return <DarwProvider><div className={s.site} id="darw-inicio">
-    <DarwHeader />
+  return <PortfolioProvider><div className={s.site} id="darw-inicio">
+    <PortfolioNavigation />
     <main id="contenido">
-      <section className={`${s.hero} ${s.wrap}`} aria-labelledby="darw-title">
-        <div className={s.eyebrow}><span><i className={s.statusDot} /> AGENCIA CREATIVA & DIGITAL</span><span>CHILE</span></div>
-        <div className={s.heroTitle}><h1 id="darw-title"><span>Marcas. Web.</span> <em>Contenido.</em></h1><a href="#trabajo" className={s.textLink}>Ver proyectos <span aria-hidden="true">↙</span></a></div>
-        <HeroShowcase />
+      <h1 className={s.srOnly}>Darw. Agencia creativa y digital en Chile.</h1>
+      <section className={s.hero} aria-label="Portafolio destacado"><PortfolioCover /></section>
+      <div className={s.brandBand} aria-label="Marcas de nuestro portafolio"><span>Rural Burger</span><span>Ruralpoke</span><span>FUSION SUSHI</span><span>SCANDRIVE</span><span>equilibrium</span><span>SUSHI TORII</span></div>
+      <section className={s.areas} id="areas" aria-labelledby="areas-title"><div className={s.wrap}>
+        <div className={s.areaHeading}><h2 id="areas-title">ÁREAS</h2><span>EXPLORA EL TRABAJO ↘</span></div>
+        <div className={s.areaGrid}>{areas.map((area, index) => <a className={s.areaCard} href={"#" + area.id} key={area.id}><span>0{index + 1}</span><h3>{area.title}</h3><b aria-hidden="true">↗</b><img src={asset(area.image)} alt="" width="600" height="650" loading="lazy" /></a>)}</div>
+      </div></section>
+      <section className={s.identity} id="identidad" aria-labelledby="identity-title"><div className={s.wrap}>
+        <div className={s.sectionHeading}><h2 id="identity-title">IDENTIDAD</h2><span>01 / MARCAS</span></div><IdentityGallery />
+      </div></section>
+      <section className={s.packaging} id="packaging" aria-labelledby="packaging-title">
+        <div className={s.wrap}><div className={s.sectionHeading}><h2 id="packaging-title">PACKAGING</h2><span>02 / RURAL BURGER</span></div></div>
+        <VisualRail label="Galería de packaging"><div className={s.packGroup}><WorkTile image="burger-packaging" project="rural-burger" label="Rural Burger / Packaging" /><WorkTile image="burger-box" project="rural-burger" label="Rural Burger / Caja" /><WorkTile image="burger-bag" project="rural-burger" label="Rural Burger / Bolsa" /></div><div className={s.packGroup}><WorkTile image="burger-hero" project="rural-burger" label="Rural Burger / Aplicaciones de marca" /></div></VisualRail>
       </section>
-      <section className={s.brandStrip} aria-label="Marcas de nuestro portafolio"><div className={s.wrap}><span>CLIENTES</span><div className={s.brandNames}><b>Rural Burger</b><b>RuralPoké</b><b>FUSION<span>SUSHI</span></b><b>equilibrium</b><b>SCANDRIVE</b><b>TORII</b></div></div></section>
-      <section className={`${s.work} ${s.wrap}`} id="trabajo" aria-labelledby="work-title"><div className={s.sectionHead}><span className={s.sectionNumber} aria-hidden="true">01</span><h2 id="work-title">Proyectos<span className={s.serif}>.</span></h2></div><ProjectArchive /></section>
-      <section className={s.services} id="servicios" aria-labelledby="services-title"><div className={s.wrap}><div className={s.sectionHead}><span className={s.sectionNumber} aria-hidden="true">02</span><h2 id="services-title">Servicios<span className={s.serif}>.</span></h2><span className={s.largeArrow} aria-hidden="true">↘</span></div><ServiceExplorer /></div></section>
-      <section className={s.contentSection} id="contenido-marcas" aria-labelledby="content-title"><div className={`${s.sectionHead} ${s.wrap}`}><span className={s.sectionNumber} aria-hidden="true">03</span><h2 id="content-title">Campañas & <span className={s.serif}>redes.</span></h2></div><ContentStrip /><div className={`${s.archiveNote} ${s.wrap}`}><span>ARCHIVO DE CAMPAÑAS · PROMOCIONES HISTÓRICAS</span></div></section>
-      <section className={`${s.studio} ${s.wrap}`} id="estudio" aria-labelledby="studio-title"><div className={s.studioIntro}><span className={s.kicker}>04 / NOSOTROS</span><h2 id="studio-title">Somos <span className={s.serif}>Darw.</span></h2><p>Agencia creativa y digital en Chile.</p><a href="https://darw.cl/nosotros" className={s.textLink} target="_blank" rel="noopener noreferrer">Conócenos <span aria-hidden="true">↗</span></a></div><div className={s.studioProcess}><div className={s.studioGraphic} aria-hidden="true"><span>IDEA</span><span className={s.processStar}>✳</span><span>ACCIÓN</span></div>{[{n:"01",title:"Estrategia",text:"Definimos objetivos y una dirección para tu marca."},{n:"02",title:"Diseño",text:"Creamos la identidad y sus aplicaciones."},{n:"03",title:"Desarrollo",text:"Construimos y publicamos la experiencia digital."}].map(step=><details key={step.n} className={s.processStep}><summary><span>{step.n}</span><h3>{step.title}</h3><span className={s.plus} aria-hidden="true">+</span></summary><p>{step.text}</p></details>)}</div></section>
-      <ContactStudio />
+      <section className={s.web} id="web" aria-labelledby="web-title"><div className={s.wrap}>
+        <div className={s.sectionHeading}><span>03 / DIGITAL</span><h2 id="web-title">WEB & ECOMMERCE</h2></div><WebShowcase />
+      </div></section>
+      <section className={s.illustration} id="ilustracion" aria-labelledby="illustration-title"><IllustrationStage /></section>
+      <section className={s.social} id="redes" aria-labelledby="social-title">
+        <div className={s.wrap}><div className={s.sectionHeading}><h2 id="social-title">REDES SOCIALES</h2></div></div><SocialWall /><p className={s.socialNote}>ARCHIVO DE CAMPAÑAS · PROMOCIONES HISTÓRICAS</p>
+      </section>
     </main>
-    <footer className={s.footer}><div className={s.wrap}><div className={s.footerTop}><a href="#darw-inicio" aria-label="Darw, volver al inicio"><img src="/images/darw/darw-logo.svg" alt="Darw" width="140" height="34" /></a><a href={darwContact.instagram} target="_blank" rel="noopener noreferrer">Instagram ↗</a><a href={`mailto:${darwContact.email}`}>Email ↗</a><a href="#darw-inicio">Volver arriba ↑</a></div><div className={s.footerBottom}><span>© 2026 DARW AGENCY · CHILE</span><a href="/">Ver Uppercat ↗</a></div></div></footer>
-  </div></DarwProvider>;
+    <PortfolioContact />
+  </div></PortfolioProvider>;
 }
