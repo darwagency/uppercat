@@ -190,11 +190,18 @@
 .socialFilters { display: flex; justify-content: center; flex-wrap: wrap; gap: 7px; margin: 25px 0 30px; }
 .socialFilters button { border: 1px solid #656565; border-radius: 30px; background: transparent; font-size: 11px; padding: 10px 17px; }
 .socialFilters button[aria-pressed=true] { background: var(--pink); color: var(--ink); border-color: var(--pink); }
-.socialWall { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 10px; padding-inline: 20px; }
-.socialWall>.workTile { aspect-ratio: 4/5; border-radius: 7px; animation: reveal .4s ease; }
-.socialWall>.workTile:nth-child(4n+2) { transform: translateY(26px); }
-.socialWall>.workTile:nth-child(4n+4) { transform: translateY(26px); }
-.socialWall>.workTile>img { object-fit: cover; object-position: top; }
+.socialMotion { overflow: hidden; }
+.socialRow { position: relative; padding-bottom: 34px; }
+.socialRow :global(.loop-viewport) { touch-action: pan-x pan-y; margin: 0; }
+.socialRow :global(.loop-group) { gap: 14px; padding-right: 14px; }
+.socialCard { flex: 0 0 clamp(240px,25vw,370px); width: clamp(240px,25vw,370px); }
+.socialCard>.workTile { aspect-ratio: 4/5; height: auto; }
+.socialCard>.workTile>img { object-fit: cover; object-position: top; }
+.socialRow :global(.focus-only) { position: absolute; top: auto; left: 50%; bottom: 6px; transform: translateX(-50%); width: 32px; height: 24px; padding: 0; overflow: visible; clip-path: none; font-size: 0; border: 1px solid #737373; border-radius: 20px; color: var(--paper); background: var(--ink); z-index: 2; }
+.socialRow :global(.focus-only)::after { content: 'Ⅱ'; font-size: 11px; }
+.socialRow :global(.focus-only)[aria-pressed=true]::after { content: '▶'; }
+.socialSelection { display: flex; gap: 14px; justify-content: center; padding: 0 var(--gutter) 12px; overflow-x: auto; }
+.socialSelection>.workTile { flex: 0 0 clamp(240px,25vw,370px); aspect-ratio: 4/5; animation: reveal .45s ease; }
 .socialNote { margin-top: 50px!important; padding-inline: var(--gutter); font-size: 8px; color: #a2a2a2; letter-spacing: .07em; text-align: right; }
 
 .contact { background: var(--blue); padding: 45px var(--gutter) 30px; }
@@ -228,6 +235,49 @@
 .thumbnails img { width: 100%; height: 100%; object-fit: cover; }
 @keyframes reveal { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes characterIn { from { opacity: 0; transform: rotate(-8deg) scale(.94); } to { opacity: 1; transform: rotate(0) scale(1); } }
+
+/* Motion is local to visible sections; it never controls page scrolling. */
+.site [data-reveal] { transition: opacity .65s ease var(--reveal-delay,0ms), translate .8s cubic-bezier(.2,.7,.2,1) var(--reveal-delay,0ms); }
+.site [data-reveal=waiting] { opacity: 0; translate: 0 24px; }
+.site [data-reveal=visible] { opacity: 1; translate: 0 0; }
+.coverActive .coverCopy h2 { animation: titleArrival .8s cubic-bezier(.2,.7,.2,1) both; }
+.coverActive .coverDiscipline, .coverActive .coverLink { animation: reveal .65s .12s ease both; }
+.coverSticker { animation: stickerTurn 20s linear infinite; animation-play-state: paused; }
+.digital .coverSticker { animation-name: badgeSway; animation-duration: 6s; animation-timing-function: ease-in-out; }
+.coverDetailImage { animation: artworkFloat 6s ease-in-out infinite; animation-play-state: paused; }
+.illustrationTitle::before { animation: blobSway 10s ease-in-out infinite; animation-play-state: paused; }
+.illustrationTitle h2>span { animation: stickerTurn 24s linear infinite; animation-play-state: paused; }
+.characterOrbit { animation: orbitTurn 24s linear infinite; animation-play-state: paused; }
+.characterOrbit::after { animation: orbitTurn 18s linear reverse infinite; animation-play-state: paused; }
+.site [data-ambient=true] :is(.coverSticker,.coverDetailImage,.characterOrbit,.illustrationTitle h2>span), .site [data-ambient=true] .characterOrbit::after, .site [data-ambient=true] .illustrationTitle::before { animation-play-state: running; }
+.site[data-motion-paused=true] *, .site[data-motion-paused=true] *::before, .site[data-motion-paused=true] *::after { animation-play-state: paused!important; }
+.site :is(.navCta,.coverLink,.coverControls button,.railControls button,.identitySelector button,.characterTabs button,.socialFilters button,.webTrigger,.dialogControls button) { transition: transform .25s ease, background .25s ease, color .25s ease, border-color .25s ease, box-shadow .25s ease; }
+.site :is(.navCta,.coverLink,.coverControls button,.railControls button,.identitySelector button,.socialFilters button):active { transform: scale(.96); }
+.mainNav a { position: relative; }
+.mainNav a::after { content: ''; position: absolute; left: 0; right: 0; bottom: 5px; height: 2px; background: var(--blue); transform: scaleX(0); transform-origin: left; transition: transform .25s; }
+.mainNav a:is(:hover,:focus-visible)::after { transform: scaleX(1); }
+.navCta span, .coverLink span, .areaCard>b { transition: transform .3s; }
+.navCta:hover span, .coverLink:hover span { transform: translate(3px,-3px); }
+.areaCard:hover>b { transform: rotate(45deg); }
+.webTrigger:hover strong { translate: 7px 0; }
+.webTrigger strong { transition: translate .3s; }
+.identitySelector button:hover:not([aria-pressed=true]), .socialFilters button:hover:not([aria-pressed=true]) { background: #ffffff16; }
+.contactBottom a:not(:first-child) { transition: opacity .25s, translate .25s; }
+.contactBottom a:hover { translate: 0 -3px; opacity: .8; }
+.dialog[open] { animation: viewerArrival .3s cubic-bezier(.2,.7,.2,1); }
+.dialogImage img { animation: reveal .3s ease; }
+@media(hover:hover) and (prefers-reduced-motion:no-preference) {
+  .workTile:is(:hover,:focus-visible) { box-shadow: inset 0 0 0 2px #d8ff3e; }
+  .navCta:hover { transform: translateY(-2px); box-shadow: 0 4px 0 #181818; }
+  .characterStage:hover .workTile>img { transform: rotate(-3deg) scale(1.025); }
+}
+@keyframes titleArrival { from { opacity: 0; translate: 0 20px; } to { opacity: 1; translate: 0 0; } }
+@keyframes artworkFloat { 0%,100% { translate: 0 0; } 50% { translate: 0 -9px; } }
+@keyframes stickerTurn { to { rotate: 360deg; } }
+@keyframes badgeSway { 0%,100% { rotate: -3deg; } 50% { rotate: 3deg; } }
+@keyframes orbitTurn { to { rotate: 360deg; } }
+@keyframes blobSway { 0%,100% { rotate: 0deg; scale: 1; } 50% { rotate: -7deg; scale: 1.025; } }
+@keyframes viewerArrival { from { opacity: 0; translate: 0 16px; scale: .98; } to { opacity: 1; translate: 0 0; scale: 1; } }
 
 @media(min-width:1700px) { .hero { padding-inline: var(--gutter); } }
 @media(max-width:1100px) {
@@ -339,8 +389,9 @@
   .social .sectionHeading h2 { font-size: clamp(48px,14vw,96px); }
   .socialFilters { gap: 5px; margin: 18px 12px 25px; }
   .socialFilters button { font-size: 9px; padding: 9px 12px; }
-  .socialWall { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 7px; padding-inline: 12px; }
-  .socialWall>.workTile:nth-child(2n) { transform: translateY(16px); }
+  .socialCard, .socialSelection>.workTile { width: 68vw; flex-basis: 68vw; max-width: 320px; }
+  .socialRow :global(.loop-group) { gap: 9px; padding-right: 9px; }
+  .socialSelection { justify-content: flex-start; gap: 9px; }
   .socialNote { margin-top: 35px!important; font-size: 7px; }
   .contact { padding-top: 32px; }
   .contactTop>.micro { font-size: 9px; }

@@ -1,13 +1,47 @@
 "use client";
 
 import { createContext, useCallback, useContext, useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
+import Rail from "@/components/Rail";
 import useAmbientMotion from "@/components/useAmbientMotion";
 import { asset, darwContact, darwProjects, type DarwProject } from "@/data/darw";
 import s from "@/app/principal-2/portfolio.module.css";
 
 const pad = (n: number) => String(n).padStart(2, "0");
-const sections = [["darw-inicio", "Inicio"], ["areas", "Áreas"], ["identidad", "Identidad"], ["packaging", "Packaging"], ["web", "Web"], ["ilustracion", "Ilustración"], ["redes", "Redes"], ["contacto", "Contacto"]] as const;
+const sections = [["darw-inicio", "Inicio"], ["areas", "Áreas"], ["redes", "Redes"], ["identidad", "Identidad"], ["packaging", "Packaging"], ["web", "Web"], ["ilustracion", "Ilustración"], ["contacto", "Contacto"]] as const;
 const PortfolioContext = createContext<(id: string, image?: string) => void>(() => {});
+
+export function PortfolioMotion() {
+  useEffect(() => {
+    const root = document.getElementById("darw-inicio");
+    if (!root) return;
+    const media = matchMedia("(prefers-reduced-motion: reduce)");
+    let entrances: IntersectionObserver | undefined;
+    let ambient: IntersectionObserver | undefined;
+    const targets = root.querySelectorAll<HTMLElement>(`.${s.sectionHeading}, .${s.areaHeading}, .${s.areaCard}, .${s.identityBoard}, .${s.webProject}, .${s.illustrationLayout}, .${s.contactTop}, .${s.contactBottom}`);
+    const sections = root.querySelectorAll<HTMLElement>("section, footer");
+    const pause = () => { root.dataset.motionPaused = String(document.hidden || Boolean(document.querySelector("dialog[open]"))); };
+    const configure = () => {
+      entrances?.disconnect(); ambient?.disconnect();
+      targets.forEach(target => { delete target.dataset.reveal; });
+      sections.forEach(section => { delete section.dataset.ambient; });
+      if (media.matches) return;
+      entrances = new IntersectionObserver(entries => {
+        entries.forEach(entry => { if (entry.isIntersecting) { (entry.target as HTMLElement).dataset.reveal = "visible"; entrances?.unobserve(entry.target); } });
+      }, { threshold: .08, rootMargin: "0px 0px -25px 0px" });
+      targets.forEach((target, index) => {
+        target.style.setProperty("--reveal-delay", `${index % 4 * 65}ms`);
+        target.dataset.reveal = target.getBoundingClientRect().top < innerHeight ? "visible" : "waiting";
+        entrances?.observe(target);
+      });
+      ambient = new IntersectionObserver(entries => entries.forEach(entry => { (entry.target as HTMLElement).dataset.ambient = String(entry.isIntersecting); }), { rootMargin: "50px" });
+      sections.forEach(section => ambient?.observe(section));
+      pause();
+    };
+    configure(); media.addEventListener("change", configure); document.addEventListener("visibilitychange", pause); document.addEventListener("toggle", pause, true);
+    return () => { entrances?.disconnect(); ambient?.disconnect(); media.removeEventListener("change", configure); document.removeEventListener("visibilitychange", pause); document.removeEventListener("toggle", pause, true); targets.forEach(target => { delete target.dataset.reveal; target.style.removeProperty("--reveal-delay"); }); sections.forEach(section => { delete section.dataset.ambient; }); delete root.dataset.motionPaused; };
+  }, []);
+  return null;
+}
 
 export function PortfolioProvider({ children }: { children: ReactNode }) {
   const [selected, setSelected] = useState<{ project: DarwProject; image: number } | null>(null);
@@ -64,7 +98,7 @@ export function PortfolioNavigation() {
   }, []);
   return <><header className={s.header} ref={header}><div className={s.navPill}>
     <a href="#darw-inicio" className={s.logo} aria-label="Darw, inicio" onClick={() => setOpen(false)}><img src="/images/darw/darw-logo.svg" alt="Darw" width="138" height="34" /></a>
-    <nav className={`${s.mainNav} ${open ? s.menuOpen : ""}`} id="darw-menu" aria-label="Navegación principal de Darw">{[["darw-inicio", "Inicio"], ["areas", "Áreas"], ["identidad", "Trabajo"], ["contacto", "Contacto"]].map(([id, label]) => <a href={`#${id}`} key={id} onClick={() => setOpen(false)}>{label}</a>)}</nav>
+    <nav className={`${s.mainNav} ${open ? s.menuOpen : ""}`} id="darw-menu" aria-label="Navegación principal de Darw">{[["darw-inicio", "Inicio"], ["areas", "Áreas"], ["redes", "Trabajo"], ["contacto", "Contacto"]].map(([id, label]) => <a href={`#${id}`} key={id} onClick={() => setOpen(false)}>{label}</a>)}</nav>
     <a className={s.navCta} href="#contacto" onClick={() => setOpen(false)}>Hablemos <span aria-hidden="true">↗</span></a><button type="button" ref={menuButton} className={s.menuButton} aria-expanded={open} aria-controls="darw-menu" aria-label={open ? "Cerrar menú" : "Abrir menú"} onClick={() => setOpen(value => !value)}>{open ? "×" : "☰"}</button>
   </div></header><nav className={s.sideIndex} aria-label="Índice de disciplinas">{sections.map(([id, label], index) => <a key={id} href={`#${id}`} aria-label={label} aria-current={active === id ? "location" : undefined}><span>{label}</span><b>{pad(index)}</b></a>)}</nav></>;
 }
@@ -153,7 +187,7 @@ const socialPieces = [
 export function SocialWall() {
   const [brand, setBrand] = useState("Todas");
   const pieces = socialPieces.filter(piece => brand === "Todas" || piece.brand === brand);
-  return <><div className={s.socialFilters} role="group" aria-label="Filtrar redes por marca">{["Todas", "Ruralpoke", "Rural Burger", "Fusion Sushi"].map(item => <button key={item} type="button" aria-pressed={brand === item} onClick={() => setBrand(item)}>{item}</button>)}</div><span className={s.srOnly} role="status">{pieces.length} {pieces.length === 1 ? "pieza" : "piezas"} de {brand === "Todas" ? "todas las marcas" : brand}</span><div className={s.socialWall}>{pieces.map(piece => <WorkTile key={piece.image} image={piece.image} project={piece.project} label={piece.label} />)}</div></>;
+  return <><div className={s.socialFilters} role="group" aria-label="Filtrar redes por marca">{["Todas", "Ruralpoke", "Rural Burger", "Fusion Sushi"].map(item => <button key={item} type="button" aria-pressed={brand === item} onClick={() => setBrand(item)}>{item}</button>)}</div><span className={s.srOnly} role="status">{pieces.length} {pieces.length === 1 ? "pieza" : "piezas"} de {brand === "Todas" ? "todas las marcas" : brand}</span><div className={s.socialMotion} key={brand}>{pieces.length > 3 ? (pieces.length >= 8 ? [pieces.filter((_, index) => index % 2 === 0), pieces.filter((_, index) => index % 2 === 1)] : [pieces]).map((row, index) => <div className={s.socialRow} key={index}><Rail label={index === 0 ? "Campañas de redes, fila superior" : "Campañas de redes, fila inferior"} variant={index === 0 ? "social-top" : "social-bottom"}>{row.map(piece => <div className={s.socialCard} key={piece.image}><WorkTile image={piece.image} project={piece.project} label={piece.label} /></div>)}</Rail></div>) : <div className={s.socialSelection}>{pieces.map(piece => <WorkTile key={piece.image} image={piece.image} project={piece.project} label={piece.label} />)}</div>}</div></>;
 }
 
 export function PortfolioContact() {

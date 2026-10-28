@@ -26,3 +26,12 @@ test('every selectable Darw project has locally exported images and a source cas
     }
   }
 });
+
+test('social campaigns follow the discipline cards and remain available before hydration', () => {
+  const sectionIds = [...html.matchAll(/<section\b[^>]*\bid="([^"]+)"/g)].map(match => match[1]);
+  assert.equal(sectionIds[sectionIds.indexOf('areas') + 1], 'redes');
+  assert.ok(sectionIds.indexOf('redes') < sectionIds.indexOf('identidad'));
+  assert.match(html, /Campañas de redes, fila superior/);
+  assert.match(html, /Campañas de redes, fila inferior/);
+  for (const piece of ['poke-may-1', 'burger-launch-1', 'poke-birthday', 'fusion-story', 'poke-cyber', 'burger-launch-2', 'poke-may-2', 'poke-story']) assert.ok(html.includes(`/images/darw/${piece}.webp`));
+});

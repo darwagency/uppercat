@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { PortfolioProvider, PortfolioNavigation, PortfolioCover, IdentityGallery, VisualRail, WorkTile, WebShowcase, IllustrationStage, SocialWall, PortfolioContact } from "@/components/darw/DarwPortfolio";
+import { PortfolioProvider, PortfolioMotion, PortfolioNavigation, PortfolioCover, IdentityGallery, VisualRail, WorkTile, WebShowcase, IllustrationStage, SocialWall, PortfolioContact } from "@/components/darw/DarwPortfolio";
 import { asset } from "@/data/darw";
 import Rail from "@/components/Rail";
 import clientLogos from "@/data/darw-logos.json";
@@ -21,6 +21,7 @@ const areas = [
 
 export default function Principal2() {
   return <PortfolioProvider><div className={s.site} id="darw-inicio">
+    <PortfolioMotion />
     <PortfolioNavigation />
     <main id="contenido">
       <h1 className={s.srOnly}>Darw. Agencia creativa y digital en Chile.</h1>
@@ -30,6 +31,9 @@ export default function Principal2() {
         <div className={s.areaHeading}><h2 id="areas-title">ÁREAS</h2><span>EXPLORA EL TRABAJO ↘</span></div>
         <div className={s.areaGrid}>{areas.map((area, index) => <a className={s.areaCard} href={"#" + area.id} key={area.id}><span>0{index + 1}</span><h3>{area.title}</h3><b aria-hidden="true">↗</b><img src={asset(area.image)} alt="" width="600" height="650" loading="lazy" /></a>)}</div>
       </div></section>
+      <section className={s.social} id="redes" aria-labelledby="social-title">
+        <div className={s.wrap}><div className={s.sectionHeading}><h2 id="social-title">REDES SOCIALES</h2></div></div><SocialWall /><p className={s.socialNote}>ARCHIVO DE CAMPAÑAS · PROMOCIONES HISTÓRICAS</p>
+      </section>
       <section className={s.identity} id="identidad" aria-labelledby="identity-title"><div className={s.wrap}>
         <div className={s.sectionHeading}><h2 id="identity-title">IDENTIDAD</h2><span>01 / MARCAS</span></div><IdentityGallery />
       </div></section>
@@ -41,9 +45,6 @@ export default function Principal2() {
         <div className={s.sectionHeading}><span>03 / DIGITAL</span><h2 id="web-title">WEB & ECOMMERCE</h2></div><WebShowcase />
       </div></section>
       <section className={s.illustration} id="ilustracion" aria-labelledby="illustration-title"><IllustrationStage /></section>
-      <section className={s.social} id="redes" aria-labelledby="social-title">
-        <div className={s.wrap}><div className={s.sectionHeading}><h2 id="social-title">REDES SOCIALES</h2></div></div><SocialWall /><p className={s.socialNote}>ARCHIVO DE CAMPAÑAS · PROMOCIONES HISTÓRICAS</p>
-      </section>
     </main>
     <PortfolioContact />
   </div></PortfolioProvider>;
