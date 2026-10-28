@@ -40,3 +40,11 @@ Se reutilizan únicamente los recursos de proyectos publicados por Darw, optimiz
 Compilación estática y seis pruebas de exportación aprobadas. Se comprobaron selección de identidad, apertura en la imagen correspondiente, navegación del visor, Escape y restauración del foco; acordeón web, personajes, filtros de redes, galería de packaging y enlaces de contacto. Se revisaron 320, 390, 768 y 1440 px sin desbordamiento horizontal del documento. Las galerías con desplazamiento conservan su overflow local intencional. La revisión móvil es emulada.
 
 Capturas: `desktop.jpg`, `mobile.jpg` e `illustration.jpg`.
+
+## Marquee de clientes · 28 de octubre de 2026
+
+Se incorporan los 14 logos preparados y nombrados por el usuario. `data/darw-logos.json` registra fuentes, recorte del contenido, dimensiones y peso; `scripts/prepare-darw-logos.mjs` genera las variantes desde la entrega local. Los másteres no se envían al navegador. Se sirven WebP sin pérdida con alpha, a 1x y 2x mediante srcSet: 159036 y 364206 bytes por conjunto respectivamente.
+
+Los márgenes transparentes se normalizan sin cortar símbolos o letras. Los logos conservan proporción y color. Torii y Fusion usan las variantes oscuras para fondo claro, recuperando la máscara alpha del máster original. RC/RacingCars, Pizzarella y Outlet se presentan a escala contenida por su resolución de origen. Los microtextos forman parte del logo y su lectura no se garantiza a tamaño reducido.
+
+El marquee reutiliza el Rail de Uppercat: bucle continuo, arrastre, teclado, pausa visible, pausa por foco/hover y respeto de movimiento reducido. Las copias están ocultas del árbol de accesibilidad. Las pruebas comprueban exportación de las 14 marcas, transparencia de bordes y ausencia de rectángulos opacos en las variantes de contraste. Capturas de integración: `marquee-desktop.jpg` y `marquee-mobile.jpg`.

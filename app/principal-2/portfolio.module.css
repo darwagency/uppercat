@@ -75,9 +75,15 @@
 .coverControls button:hover { background: white; color: #181818; }
 .coverControls>span { font-size: 9px; font-variant-numeric: tabular-nums; }
 .coverControls .pause { border-color: transparent; font-size: 11px; width: 25px; }
-.brandBand { background: var(--paper); color: var(--ink); padding: 28px var(--gutter); display: flex; justify-content: space-around; align-items: center; gap: 35px; overflow-x: auto; scrollbar-width: none; }
-.brandBand span { flex-shrink: 0; font: 400 clamp(18px,1.8vw,27px)/1 var(--font-anton),Impact,sans-serif; letter-spacing: -.035em; }
-.brandBand span:nth-child(2n) { font-family: var(--font-dm-sans),sans-serif; font-weight: 800; font-style: italic; }
+.brandBand { position: relative; background: var(--paper); color: var(--ink); padding: 12px 0 25px; overflow: hidden; }
+.brandBand :global(.loop-viewport) { scrollbar-width: none; cursor: grab; touch-action: pan-x pan-y; }
+.brandBand :global(.loop-viewport):active { cursor: grabbing; }
+.brandBand :global(.loop-group) { gap: 14px; padding-right: 14px; align-items: center; }
+.brandMark { flex: 0 0 220px; width: 220px; height: 112px; display: grid; place-items: center; user-select: none; }
+.brandMark img { width: 220px; height: 112px; object-fit: contain; pointer-events: none; }
+.brandBand :global(.focus-only) { position: absolute; top: auto; left: 50%; right: auto; bottom: 6px; transform: translateX(-50%); width: 28px; height: 24px; padding: 0; overflow: visible; clip-path: none; font-size: 0; border: 1px solid #b8b9b0; border-radius: 20px; background: var(--paper); color: var(--ink); z-index: 2; }
+.brandBand :global(.focus-only)::after { content: 'Ⅱ'; font-size: 11px; }
+.brandBand :global(.focus-only)[aria-pressed=true]::after { content: '▶'; }
 
 /* A visual discipline index, echoing Uppercat's skill cards. */
 .areas { background: var(--paper); color: var(--ink); padding: 44px 0 65px; }
@@ -270,8 +276,10 @@
   .digital .coverArtwork { padding: 18px 22px 62px; }
   .digital .coverMainImage { border-top-width: 17px; border-inline-width: 4px; }
   .digital .coverSticker { font-size: 27px; padding: 8px 12px; }
-  .brandBand { justify-content: flex-start; padding: 22px 25px; gap: 35px; }
-  .brandBand span { font-size: 20px; }
+  .brandBand { padding-block: 8px 25px; }
+  .brandBand :global(.loop-group) { gap: 8px; padding-right: 8px; }
+  .brandMark { flex-basis: 190px; width: 190px; height: 100px; }
+  .brandMark img { width: 190px; height: auto; }
   .areas { padding-block: 35px 40px; }
   .areaHeading { margin-bottom: 20px; }
   .areaHeading h2 { font-size: 38px; }

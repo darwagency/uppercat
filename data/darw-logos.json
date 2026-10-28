@@ -1,0 +1,310 @@
+[
+  {
+    "slug": "evigas",
+    "name": "Evigas",
+    "src": "/images/darw/clients/evigas.webp",
+    "src1x": "/images/darw/clients/evigas-1x.webp",
+    "width": 440,
+    "height": 224,
+    "crop": {
+      "left": 184,
+      "top": 184,
+      "width": 4096,
+      "height": 2357
+    },
+    "artwork": {
+      "width": 348,
+      "height": 200
+    },
+    "bytes2x": 13406,
+    "bytes1x": 7682,
+    "source": "01-sin-fondo/evigas.png",
+    "contrastVariant": false
+  },
+  {
+    "slug": "fuego-de-patio",
+    "name": "Fuego de Patio",
+    "src": "/images/darw/clients/fuego-de-patio.webp",
+    "src1x": "/images/darw/clients/fuego-de-patio-1x.webp",
+    "width": 440,
+    "height": 224,
+    "crop": {
+      "left": 184,
+      "top": 184,
+      "width": 4096,
+      "height": 1694
+    },
+    "artwork": {
+      "width": 416,
+      "height": 172
+    },
+    "bytes2x": 19546,
+    "bytes1x": 9330,
+    "source": "01-sin-fondo/fuego-de-patio.png",
+    "contrastVariant": false
+  },
+  {
+    "slug": "rural-burger",
+    "name": "Rural Burger",
+    "src": "/images/darw/clients/rural-burger.webp",
+    "src1x": "/images/darw/clients/rural-burger-1x.webp",
+    "width": 440,
+    "height": 224,
+    "crop": {
+      "left": 95,
+      "top": 95,
+      "width": 2386,
+      "height": 1037
+    },
+    "artwork": {
+      "width": 416,
+      "height": 181
+    },
+    "bytes2x": 56612,
+    "bytes1x": 24958,
+    "source": "01-sin-fondo/rural-burger.png",
+    "contrastVariant": false
+  },
+  {
+    "slug": "ruralpoke",
+    "name": "Ruralpoke",
+    "src": "/images/darw/clients/ruralpoke.webp",
+    "src1x": "/images/darw/clients/ruralpoke-1x.webp",
+    "width": 440,
+    "height": 224,
+    "crop": {
+      "left": 82,
+      "top": 82,
+      "width": 1001,
+      "height": 2048
+    },
+    "artwork": {
+      "width": 98,
+      "height": 200
+    },
+    "bytes2x": 15638,
+    "bytes1x": 6666,
+    "source": "01-sin-fondo/ruralpoke.png",
+    "contrastVariant": false
+  },
+  {
+    "slug": "scandrive",
+    "name": "Scandrive",
+    "src": "/images/darw/clients/scandrive.webp",
+    "src1x": "/images/darw/clients/scandrive-1x.webp",
+    "width": 440,
+    "height": 224,
+    "crop": {
+      "left": 172,
+      "top": 172,
+      "width": 4290,
+      "height": 783
+    },
+    "artwork": {
+      "width": 416,
+      "height": 76
+    },
+    "bytes2x": 10348,
+    "bytes1x": 5602,
+    "source": "01-sin-fondo/scandrive.png",
+    "contrastVariant": false
+  },
+  {
+    "slug": "sushi-torii",
+    "name": "Sushi Torii",
+    "src": "/images/darw/clients/sushi-torii.webp",
+    "src1x": "/images/darw/clients/sushi-torii-1x.webp",
+    "width": 440,
+    "height": 224,
+    "crop": {
+      "left": 82,
+      "top": 82,
+      "width": 2048,
+      "height": 1436
+    },
+    "artwork": {
+      "width": 285,
+      "height": 200
+    },
+    "bytes2x": 15142,
+    "bytes1x": 6602,
+    "source": "01-sin-fondo/sushi-torii.png",
+    "contrastVariant": true
+  },
+  {
+    "slug": "la-papa",
+    "name": "La Papa",
+    "src": "/images/darw/clients/la-papa.webp",
+    "src1x": "/images/darw/clients/la-papa-1x.webp",
+    "width": 440,
+    "height": 224,
+    "crop": {
+      "left": 141,
+      "top": 141,
+      "width": 1766,
+      "height": 744
+    },
+    "artwork": {
+      "width": 416,
+      "height": 175
+    },
+    "bytes2x": 34636,
+    "bytes1x": 17212,
+    "source": "01-sin-fondo/la-papa.png",
+    "contrastVariant": false
+  },
+  {
+    "slug": "fusion-sushi",
+    "name": "Fusion Sushi",
+    "src": "/images/darw/clients/fusion-sushi.webp",
+    "src1x": "/images/darw/clients/fusion-sushi-1x.webp",
+    "width": 440,
+    "height": 224,
+    "crop": {
+      "left": 297,
+      "top": 297,
+      "width": 3315,
+      "height": 3707
+    },
+    "artwork": {
+      "width": 179,
+      "height": 200
+    },
+    "bytes2x": 25202,
+    "bytes1x": 9680,
+    "source": "01-sin-fondo/fusion-sushi.png",
+    "contrastVariant": true
+  },
+  {
+    "slug": "colegio-monte-verde",
+    "name": "Colegio Monte Verde",
+    "src": "/images/darw/clients/colegio-monte-verde.webp",
+    "src1x": "/images/darw/clients/colegio-monte-verde-1x.webp",
+    "width": 440,
+    "height": 224,
+    "crop": {
+      "left": 141,
+      "top": 141,
+      "width": 1766,
+      "height": 1747
+    },
+    "artwork": {
+      "width": 202,
+      "height": 200
+    },
+    "bytes2x": 32502,
+    "bytes1x": 13218,
+    "source": "01-sin-fondo/colegio-monte-verde.png",
+    "contrastVariant": false
+  },
+  {
+    "slug": "equilibrium",
+    "name": "Equilibrium",
+    "src": "/images/darw/clients/equilibrium.webp",
+    "src1x": "/images/darw/clients/equilibrium-1x.webp",
+    "width": 440,
+    "height": 224,
+    "crop": {
+      "left": 141,
+      "top": 141,
+      "width": 1766,
+      "height": 975
+    },
+    "artwork": {
+      "width": 362,
+      "height": 200
+    },
+    "bytes2x": 21752,
+    "bytes1x": 9940,
+    "source": "01-sin-fondo/equilibrium.png",
+    "contrastVariant": false
+  },
+  {
+    "slug": "racingcars",
+    "name": "RacingCars",
+    "src": "/images/darw/clients/racingcars.webp",
+    "src1x": "/images/darw/clients/racingcars-1x.webp",
+    "width": 440,
+    "height": 224,
+    "crop": {
+      "left": 144,
+      "top": 144,
+      "width": 1760,
+      "height": 1760
+    },
+    "artwork": {
+      "width": 184,
+      "height": 184
+    },
+    "bytes2x": 14008,
+    "bytes1x": 6114,
+    "source": "01-sin-fondo/racingcars.png",
+    "contrastVariant": false
+  },
+  {
+    "slug": "monteandino-coffee",
+    "name": "Monteandino Coffee",
+    "src": "/images/darw/clients/monteandino-coffee.webp",
+    "src1x": "/images/darw/clients/monteandino-coffee-1x.webp",
+    "width": 440,
+    "height": 224,
+    "crop": {
+      "left": 144,
+      "top": 144,
+      "width": 1760,
+      "height": 977
+    },
+    "artwork": {
+      "width": 360,
+      "height": 200
+    },
+    "bytes2x": 19724,
+    "bytes1x": 10130,
+    "source": "01-sin-fondo/monteandino-coffee.png",
+    "contrastVariant": false
+  },
+  {
+    "slug": "pizzarella",
+    "name": "Pizzarella",
+    "src": "/images/darw/clients/pizzarella.webp",
+    "src1x": "/images/darw/clients/pizzarella-1x.webp",
+    "width": 440,
+    "height": 224,
+    "crop": {
+      "left": 144,
+      "top": 144,
+      "width": 1760,
+      "height": 1099
+    },
+    "artwork": {
+      "width": 288,
+      "height": 180
+    },
+    "bytes2x": 62090,
+    "bytes1x": 22512,
+    "source": "01-sin-fondo/pizzarella.png",
+    "contrastVariant": false
+  },
+  {
+    "slug": "outlet-de-la-construccion",
+    "name": "Outlet de la Construcción",
+    "src": "/images/darw/clients/outlet-de-la-construccion.webp",
+    "src1x": "/images/darw/clients/outlet-de-la-construccion-1x.webp",
+    "width": 440,
+    "height": 224,
+    "crop": {
+      "left": 144,
+      "top": 144,
+      "width": 1760,
+      "height": 1623
+    },
+    "artwork": {
+      "width": 184,
+      "height": 170
+    },
+    "bytes2x": 23600,
+    "bytes1x": 9390,
+    "source": "01-sin-fondo/outlet-de-la-construccion.png",
+    "contrastVariant": false
+  }
+]
