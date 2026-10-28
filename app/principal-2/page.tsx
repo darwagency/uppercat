@@ -26,7 +26,7 @@ export default function Principal2() {
     <main id="contenido">
       <h1 className={s.srOnly}>Darw. Agencia creativa y digital en Chile.</h1>
       <section className={s.hero} aria-label="Portafolio destacado"><PortfolioCover /></section>
-      <section className={s.brandBand} aria-label="Marcas de nuestro portafolio"><Rail label="Logos de clientes de Darw" variant="brands">{clientLogos.map(logo => <div className={s.brandMark} key={logo.slug}><img src={logo.src} srcSet={`${logo.src1x} 1x, ${logo.src} 2x`} alt={logo.name} width={logo.width} height={logo.height} loading="lazy" decoding="async" draggable={false} /></div>)}</Rail></section>
+      <section className={s.brandBand} aria-label="Marcas de nuestro portafolio"><Rail label="Logos de clientes de Darw" variant="brands" showPauseControl={false} smooth speed={-12}>{clientLogos.map(logo => <div className={s.brandMark} key={logo.slug}><img src={logo.src} srcSet={`${logo.src1x} 1x, ${logo.src} 2x`} alt={logo.name} width={logo.width} height={logo.height} loading="lazy" decoding="async" draggable={false} /></div>)}</Rail></section>
       <section className={s.areas} id="areas" aria-labelledby="areas-title"><div className={s.wrap}>
         <div className={s.areaHeading}><h2 id="areas-title">ÁREAS</h2><span>EXPLORA EL TRABAJO ↘</span></div>
         <div className={s.areaGrid}>{areas.map((area, index) => <a className={s.areaCard} href={"#" + area.id} key={area.id}><span>0{index + 1}</span><h3>{area.title}</h3><b aria-hidden="true">↗</b><img src={asset(area.image)} alt="" width="600" height="650" loading="lazy" /></a>)}</div>

@@ -36,5 +36,6 @@ test('all 14 client marks export with names and lightweight transparent WebP var
   }
   assert.ok(bytes < 500_000, 'Client strip should not ship multi-megabyte logo masters');
   const html = readFileSync('out/principal-2.html', 'utf8');
+  assert.ok(!html.includes('aria-label="Pausar movimiento de Logos de clientes de Darw"'), 'The client marquee must not show a pause control');
   for (const logo of logos) assert.ok(html.includes(`alt="${logo.name}"`), `Missing logo name: ${logo.name}`);
 });

@@ -7,7 +7,7 @@ const classes: Record<Variant, string> = { skills:"skills-loop", packaging:"pack
 // Signed pixels/second: negative moves the artwork right; positive moves it left.
 const speeds: Record<Variant, number> = { skills:0, packaging:-16, illustrations:16, "social-top":-18, "social-bottom":18, brands:-18, testimonials:12, products:12 };
 
-export default function Rail({ children, label, variant }: { children: ReactNode; label: string; variant: Variant }) {
+export default function Rail({ children, label, variant, showPauseControl = true, smooth = false, speed }: { children: ReactNode; label: string; variant: Variant; showPauseControl?: boolean; smooth?: boolean; speed?: number }) {
   const viewport = useRef<HTMLDivElement>(null);
   const original = useRef<HTMLDivElement>(null);
   const unit = useRef(0);
@@ -16,7 +16,10 @@ export default function Rail({ children, label, variant }: { children: ReactNode
   const [ready, setReady] = useState(false);
   const [paused, setPaused] = useState(false);
   const [cardWidth, setCardWidth] = useState<string>();
-  const { running, pauseFor } = useAmbientMotion(viewport, ready && !paused && speeds[variant] !== 0);
+  const velocity = useRef(0);
+  const remainder = useRef(0);
+  const motionSpeed = speed ?? speeds[variant];
+  const { running, pauseFor } = useAmbientMotion(viewport, ready && !paused && motionSpeed !== 0);
   const id = useId();
   useEffect(() => { setReady(true); }, []);
   useEffect(() => {
@@ -36,20 +39,38 @@ export default function Rail({ children, label, variant }: { children: ReactNode
   }, [ready, variant]);
   useEffect(() => {
     const el = viewport.current;
-    if (!el || !running) return;
+    if (!el || !ready || (!smooth && !running)) return;
+    const track = el.querySelector<HTMLElement>(".loop-track");
+    if (smooth && (!running && (document.hidden || matchMedia("(prefers-reduced-motion: reduce)").matches))) {
+      velocity.current = 0;
+      remainder.current = 0;
+      if (track) track.style.transform = "";
+      return;
+    }
     let frame = 0, previous = 0;
     // Keep fractional distance: repeatedly adding <1px to scrollLeft can round to zero.
-    let position = el.scrollLeft, lastWritten = el.scrollLeft;
+    let position = el.scrollLeft - (smooth ? remainder.current : 0), lastWritten = el.scrollLeft;
     const tick = (now: number) => {
       const dt = previous ? Math.min(now - previous, 48) : 0; previous = now;
-      if (el.scrollLeft !== lastWritten) position = el.scrollLeft;
-      position += speeds[variant] * dt / 1000;
+      if (el.scrollLeft !== lastWritten) position += el.scrollLeft - lastWritten;
+      if (smooth) {
+        const target = running ? motionSpeed : 0;
+        velocity.current += (target - velocity.current) * (1 - Math.exp(-dt / 380));
+        if (Math.abs(velocity.current) < .02 && !running) velocity.current = 0;
+      }
+      position += (smooth ? velocity.current : motionSpeed) * dt / 1000;
       el.scrollLeft = position;
+      // Native scroll positions can round to whole pixels. Preserve the subpixel
+      // remainder on the compositor so a slow rail doesn't step frame by frame.
+      if (smooth && track) {
+        remainder.current = el.scrollLeft - position;
+        track.style.transform = `translate3d(${remainder.current}px,0,0)`;
+      }
       lastWritten = el.scrollLeft;
-      frame = requestAnimationFrame(tick);
+      if (running || (smooth && velocity.current !== 0)) frame = requestAnimationFrame(tick);
     };
     frame = requestAnimationFrame(tick); return () => cancelAnimationFrame(frame);
-  }, [running, variant]);
+  }, [running, motionSpeed, ready, smooth]);
   useEffect(() => {
     const release = () => {
       if (!drag.current) return;
@@ -92,7 +113,7 @@ export default function Rail({ children, label, variant }: { children: ReactNode
         }}
         onKeyDown={(e) => { if (e.target === e.currentTarget && ["ArrowLeft","ArrowRight"].includes(e.key)) { e.preventDefault(); shift(e.key === "ArrowRight" ? 1 : -1); } }}
         onDragStart={(e) => e.preventDefault()}
-        onPointerDown={(e) => { preventClick.current = false; pauseFor(); if (e.pointerType !== "mouse" || e.button !== 0) return; drag.current = {id:e.pointerId,x:e.clientX,left:e.currentTarget.scrollLeft,moved:false}; }}
+        onPointerDown={(e) => { preventClick.current = false; velocity.current = 0; pauseFor(); if (e.pointerType !== "mouse" || e.button !== 0) return; drag.current = {id:e.pointerId,x:e.clientX,left:e.currentTarget.scrollLeft,moved:false}; }}
         onPointerMove={(e) => { const d = drag.current; if (!d || d.id !== e.pointerId) return; const dx = e.clientX - d.x; if (Math.abs(dx) > 7) { d.moved = true; e.currentTarget.setPointerCapture(e.pointerId); } if (d.moved) { e.currentTarget.scrollLeft = d.left - dx; e.preventDefault(); } }}
         onPointerUp={finish} onPointerCancel={finish} onClickCapture={(e) => { if (preventClick.current) { e.preventDefault(); e.stopPropagation(); preventClick.current = false; } }}>
         <div className={variant === "products" ? "shop-loop-track loop-track" : "loop-track"}>
@@ -103,6 +124,6 @@ export default function Rail({ children, label, variant }: { children: ReactNode
       </div>
       {(variant === "skills" || variant === "products") && controls(1)}
     </div>
-    {speeds[variant] !== 0 && <button type="button" className="focus-only" aria-label={(paused ? "Activar" : "Pausar") + " movimiento de " + label} aria-pressed={paused} onClick={() => setPaused(!paused)}>{paused ? "Activar" : "Pausar"} movimiento</button>}
+    {showPauseControl && motionSpeed !== 0 && <button type="button" className="focus-only" aria-label={(paused ? "Activar" : "Pausar") + " movimiento de " + label} aria-pressed={paused} onClick={() => setPaused(!paused)}>{paused ? "Activar" : "Pausar"} movimiento</button>}
   </>;
 }

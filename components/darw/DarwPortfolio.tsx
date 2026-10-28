@@ -29,7 +29,7 @@ export function PortfolioMotion() {
         entries.forEach(entry => { if (entry.isIntersecting) { (entry.target as HTMLElement).dataset.reveal = "visible"; entrances?.unobserve(entry.target); } });
       }, { threshold: .08, rootMargin: "0px 0px -25px 0px" });
       targets.forEach((target, index) => {
-        target.style.setProperty("--reveal-delay", `${index % 4 * 65}ms`);
+        target.style.setProperty("--reveal-delay", `${index % 4 * 45}ms`);
         target.dataset.reveal = target.getBoundingClientRect().top < innerHeight ? "visible" : "waiting";
         entrances?.observe(target);
       });
@@ -187,7 +187,7 @@ const socialPieces = [
 export function SocialWall() {
   const [brand, setBrand] = useState("Todas");
   const pieces = socialPieces.filter(piece => brand === "Todas" || piece.brand === brand);
-  return <><div className={s.socialFilters} role="group" aria-label="Filtrar redes por marca">{["Todas", "Ruralpoke", "Rural Burger", "Fusion Sushi"].map(item => <button key={item} type="button" aria-pressed={brand === item} onClick={() => setBrand(item)}>{item}</button>)}</div><span className={s.srOnly} role="status">{pieces.length} {pieces.length === 1 ? "pieza" : "piezas"} de {brand === "Todas" ? "todas las marcas" : brand}</span><div className={s.socialMotion} key={brand}>{pieces.length > 3 ? (pieces.length >= 8 ? [pieces.filter((_, index) => index % 2 === 0), pieces.filter((_, index) => index % 2 === 1)] : [pieces]).map((row, index) => <div className={s.socialRow} key={index}><Rail label={index === 0 ? "Campañas de redes, fila superior" : "Campañas de redes, fila inferior"} variant={index === 0 ? "social-top" : "social-bottom"}>{row.map(piece => <div className={s.socialCard} key={piece.image}><WorkTile image={piece.image} project={piece.project} label={piece.label} /></div>)}</Rail></div>) : <div className={s.socialSelection}>{pieces.map(piece => <WorkTile key={piece.image} image={piece.image} project={piece.project} label={piece.label} />)}</div>}</div></>;
+  return <><div className={s.socialFilters} role="group" aria-label="Filtrar redes por marca">{["Todas", "Ruralpoke", "Rural Burger", "Fusion Sushi"].map(item => <button key={item} type="button" aria-pressed={brand === item} onClick={() => setBrand(item)}>{item}</button>)}</div><span className={s.srOnly} role="status">{pieces.length} {pieces.length === 1 ? "pieza" : "piezas"} de {brand === "Todas" ? "todas las marcas" : brand}</span><div className={s.socialMotion} key={brand}>{pieces.length > 3 ? (pieces.length >= 8 ? [pieces.filter((_, index) => index % 2 === 0), pieces.filter((_, index) => index % 2 === 1)] : [pieces]).map((row, index) => <div className={s.socialRow} key={index}><Rail label={index === 0 ? "Campañas de redes, fila superior" : "Campañas de redes, fila inferior"} variant={index === 0 ? "social-top" : "social-bottom"} smooth speed={index === 0 ? -14 : 14}>{row.map(piece => <div className={s.socialCard} key={piece.image}><WorkTile image={piece.image} project={piece.project} label={piece.label} /></div>)}</Rail></div>) : <div className={s.socialSelection}>{pieces.map(piece => <WorkTile key={piece.image} image={piece.image} project={piece.project} label={piece.label} />)}</div>}</div></>;
 }
 
 export function PortfolioContact() {
