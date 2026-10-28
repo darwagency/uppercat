@@ -36,6 +36,8 @@
 .navCta span { font-size: 22px; line-height: 1; }
 .navCta:hover { background: var(--ink); }
 .menuButton { display: none; }
+.mobileNavItem, .mobileHint { display: none; }
+.mainNav a[aria-current] { color: var(--blue); }
 .sideIndex { position: fixed; z-index: 30; right: 8px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 5px; }
 .sideIndex a { position: relative; display: block; width: 25px; height: 25px; font-size: 10px; }
 .sideIndex b { display: grid; place-items: center; width: 25px; height: 25px; border-radius: 100%; background: #202020d9; color: #aaa; border: 1px solid #ffffff30; font-size: 8px; font-weight: 500; }
@@ -144,7 +146,7 @@
 .web .sectionHeading h2 { font-size: clamp(56px,8vw,124px); }
 .web .sectionHeading>span { color: var(--acid); }
 .webStack { border-radius: 15px; overflow: hidden; }
-.webProject { background: #323232; }
+.webProject { background: #323232; transition: background .6s var(--ease-soft), color .6s var(--ease-soft); }
 .webProject:nth-child(2n) { background: #272727; }
 .webProject:not(:last-child) { border-bottom: 1px solid #626262; }
 .webProject h3 { font-weight: 400; }
@@ -294,16 +296,19 @@
 }
 @media(max-width:760px) {
   .site { --gutter: 20px; }
-  .header { padding: 16px 15px 12px; }
+  .header { position: sticky; top: 0; padding: max(12px,env(safe-area-inset-top)) 15px 10px; }
+  .site section[id], .site footer[id] { scroll-margin-top: 28px; }
+  .mobileNavItem, .mobileHint { display: block; }
+  .desktopHint { display: none; }
   .navPill { min-height: 57px; padding: 5px 9px 5px 16px; gap: 10px; }
   .logo { margin-right: auto; padding-right: 0; border: 0; }
   .logo img { width: 98px; }
-  .navCta { gap: 15px; padding: 10px 14px; font-size: 10px; }
+  .navCta { gap: 15px; padding: 10px 14px; font-size: 11px; min-height: 44px; }
   .navCta span { font-size: 18px; }
-  .menuButton { display: block; flex: 0 0 34px; height: 34px; padding: 0; border: 0; background: transparent; font-size: 22px!important; }
-  .mainNav { display: none; position: absolute; top: calc(100% - 6px); left: 15px; right: 15px; padding: 18px 25px; border-radius: 18px; border: 2px solid #080808; background: var(--paper); box-shadow: 0 15px 25px #0004; }
+  .menuButton { display: block; flex: 0 0 44px; height: 44px; padding: 0; border: 0; background: transparent; font-size: 22px!important; }
+  .mainNav { display: none; position: absolute; top: calc(100% - 6px); left: 15px; right: 15px; padding: 12px 25px; max-height: calc(100dvh - 100px); overflow-y: auto; border-radius: 18px; border: 2px solid #080808; background: var(--paper); box-shadow: 0 15px 25px #0004; }
   .menuOpen { display: flex; flex-direction: column; align-items: stretch; gap: 0; }
-  .mainNav a { font-size: 20px; border-bottom: 1px solid #ccc; }
+  .mainNav a { font-size: 17px; min-height: 46px; padding-block: 12px; border-bottom: 1px solid #ccc; }
   .mainNav a:last-child { border: 0; }
   .hero { padding: 4px 12px 20px; }
   .cover { height: 580px; border-radius: 14px; }
@@ -313,11 +318,12 @@
   .coverCopy h2 { font-size: clamp(62px,18vw,105px); line-height: .9; margin-top: 15px; }
   .coverCopy h2 br { display: none; }
   .coverCopy h2>span { display: block; }
-  .coverDiscipline { font-size: 8px; margin-top: 15px; max-width: 60%; }
-  .coverLink { position: absolute; bottom: 22px; right: 23px; margin: 0; gap: 10px; font-size: 10px!important; }
+  .coverDiscipline { font-size: 10px; margin-top: 15px; max-width: 52%; line-height: 1.5; }
+  .coverLink { position: absolute; bottom: 18px; right: 23px; margin: 0; min-height: 44px; gap: 10px; font-size: 11px!important; }
   .coverLink span { font-size: 19px; }
-  .coverControls { left: 14px; bottom: 15px; gap: 10px; }
-  .coverControls button { width: 29px; height: 29px; }
+  .coverControls { left: 14px; bottom: 12px; gap: 8px; }
+  .coverControls button, .coverControls .pause { width: 44px; height: 44px; }
+  .coverControls>span { font-size: 11px; }
   .coverDetailImage { width: 29%; height: 43%; bottom: 15%; right: 6%; border-width: 4px; }
   .coverSticker { font-size: 75px; top: 8%; }
   .coverOpen { display: none; }
@@ -331,7 +337,7 @@
   .areas { padding-block: 35px 40px; }
   .areaHeading { margin-bottom: 20px; }
   .areaHeading h2 { font-size: 38px; }
-  .areaHeading span { font-size: 8px; }
+  .areaHeading span { font-size: 9px; }
   .areaGrid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 12px; padding: 7px 0 14px; scrollbar-width: none; }
   .areaCard { flex: 0 0 68%; min-height: 280px; aspect-ratio: .9; scroll-snap-align: start; }
   .areaCard h3 { font-size: 38px; }
@@ -340,8 +346,8 @@
   .sectionHeading h2 { font-size: clamp(52px,15vw,100px); }
   .sectionHeading>span { font-size: 8px; }
   .identity { padding-block: 40px; }
-  .identitySelector { gap: 6px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
-  .identitySelector button { padding: 10px 13px; gap: 9px; font-size: 10px; flex-shrink: 0; }
+  .identitySelector { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 6px; padding: 4px 0 7px; }
+  .identitySelector button { justify-content: center; padding: 10px 8px; min-height: 44px; gap: 6px; font-size: 11px; }
   .identitySelector button>span:first-child { display: none; }
   .identitySelector button>span:last-child { font-size: 16px; }
   .identityBoard { height: auto; grid-template-columns: repeat(2,minmax(0,1fr)); grid-template-rows: 310px 170px; gap: 8px; }
@@ -354,7 +360,7 @@
   .packaging .sectionHeading>span { display: block; margin-bottom: 10px; }
   .packaging .sectionHeading h2 { font-size: clamp(48px,14vw,90px); }
   .railControls { padding-bottom: 13px; }
-  .railControls button { width: 36px; height: 36px; font-size: 20px; }
+  .railControls button { width: 44px; height: 44px; font-size: 22px; }
   .visualRail { gap: 10px; }
   .packGroup { flex-basis: 88%; height: 430px; grid-template-columns: 1fr 1fr; grid-template-rows: 1.3fr 1fr; gap: 8px; }
   .packGroup>.workTile:first-child { grid-row: auto; grid-column: span 2; }
@@ -364,7 +370,7 @@
   .web .sectionHeading h2 { font-size: clamp(42px,11vw,72px); }
   .web .sectionHeading>span { display: block; margin-bottom: 12px; }
   .webTrigger { grid-template-columns: 20px 1fr 20px; gap: 12px; padding: 18px 15px; }
-  .webTrigger strong { font-size: 22px; }
+  .webTrigger strong { font-size: 22px; line-height: 1.15; }
   .webTrigger>small { display: none; }
   .webTrigger>span { font-size: 9px; }
   .webTrigger>b { font-size: 21px; }
@@ -386,31 +392,36 @@
   .social { padding-block: 40px 30px; }
   .social .sectionHeading h2 { font-size: clamp(48px,14vw,96px); }
   .socialFilters { gap: 5px; margin: 18px 12px 25px; }
-  .socialFilters button { font-size: 9px; padding: 9px 12px; }
+  .socialFilters button { font-size: 11px; min-height: 44px; padding: 10px 12px; }
+  .socialRow { padding-bottom: 52px; }
+  .socialRow :global(.focus-only) { width: 44px; height: 44px; bottom: 4px; }
   .socialCard, .socialSelection>.workTile { width: 68vw; flex-basis: 68vw; max-width: 320px; }
   .socialRow :global(.loop-group) { gap: 9px; padding-right: 9px; }
   .socialSelection { justify-content: flex-start; gap: 9px; }
-  .socialNote { margin-top: 35px!important; font-size: 7px; }
+  .socialNote { margin-top: 25px!important; font-size: 9px; line-height: 1.5; }
   .contact { padding-top: 32px; }
   .contactTop>.micro { font-size: 9px; }
   .contactTop>a { gap: 12px; padding: 15px 0 27px; }
   .contactTop h2 { font-size: clamp(47px,12vw,85px); }
   .contactTop>a>span { width: 58px; flex-shrink: 0; font-size: 45px; }
-  .contactBottom { gap: 23px 28px; padding-top: 23px; font-size: 10px; }
+  .contactBottom { gap: 12px 24px; padding-top: 23px; font-size: 12px; }
+  .contactBottom>a { display: flex; align-items: center; min-height: 44px; }
   .contactBottom>a:first-child { width: 100%; }
   .contactBottom img { width: 145px; }
-  .contactBottom>span { font-size: 8px; }
+  .contactBottom>span { font-size: 10px; }
   .dialog { width: calc(100vw - 16px); max-height: calc(100dvh - 16px); border-radius: 10px; }
-  .dialogBar { padding: 12px 15px; font-size: 9px; }
+  .dialogBar { padding: 10px 15px; font-size: 11px; }
+  .dialogBar button { min-height: 44px; font-size: 12px; }
   .dialogImage { padding: 12px; }
   .dialogImage img { height: 43dvh; }
   .dialogControls { padding: 10px 15px; }
-  .dialogControls>span { font-size: 8px; }
+  .dialogControls>span { font-size: 11px; line-height: 1.4; }
+  .dialogControls button { flex-basis: 44px; height: 44px; }
   .dialogBottom { padding: 20px 18px; gap: 18px; }
   .dialogBottom h2 { font-size: 26px; }
-  .dialogBottom p { font-size: 8px; }
-  .dialogBottom a { font-size: 10px; }
-  .thumbnails { padding: 0 18px 20px; }
+  .dialogBottom p { font-size: 11px; line-height: 1.5; }
+  .dialogBottom a { display: flex; align-items: center; min-height: 44px; font-size: 12px; }
+  .thumbnails { padding: 0 18px 20px; scrollbar-width: none; }
 }
 @media(max-width:370px) {
   .site { --gutter: 16px; }
@@ -421,10 +432,12 @@
   .coverCopy { padding-left: 21px; }
   .coverCopy h2 { font-size: 62px; }
   .coverCopy>.micro { left: 21px; }
-  .coverLink { right: 17px; gap: 6px; font-size: 9px!important; }
-  .coverDiscipline { font-size: 7px; }
+  .coverLink { right: 17px; gap: 6px; font-size: 11px!important; }
+  .coverDiscipline { font-size: 9px; }
   .areaCard { flex-basis: 78%; }
-  .identitySelector button { font-size: 9px; padding-inline: 10px; }
+  .identitySelector button { padding-inline: 6px; }
+  .identitySelector button>span:last-child { display: none; }
+  .socialFilters { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); margin-inline: var(--gutter); }
   .illustrationTitle h2 { font-size: 80px; }
   .characterTabs button { width: 47px; height: 47px; }
   .contactTop h2 { font-size: 44px; }

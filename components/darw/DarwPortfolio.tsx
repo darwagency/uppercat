@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useCallback, useContext, useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
+import { createContext, useCallback, useContext, useEffect, useRef, useState, type CSSProperties, type ReactNode, type MouseEvent } from "react";
 import Rail from "@/components/Rail";
 import useAmbientMotion from "@/components/useAmbientMotion";
 import { asset, darwContact, darwProjects, type DarwProject } from "@/data/darw";
@@ -17,7 +17,7 @@ export function PortfolioMotion() {
     const media = matchMedia("(prefers-reduced-motion: reduce)");
     let entrances: IntersectionObserver | undefined;
     let ambient: IntersectionObserver | undefined;
-    const targets = root.querySelectorAll<HTMLElement>(`.${s.sectionHeading}, .${s.areaHeading}, .${s.areaCard}, .${s.identityBoard}, .${s.webProject}, .${s.illustrationLayout}, .${s.contactTop}, .${s.contactBottom}`);
+    const targets = root.querySelectorAll<HTMLElement>(`.${s.sectionHeading}, .${s.areaHeading}, .${s.areaCard}, .${s.illustrationTitle} h2, .${s.contactTop} h2`);
     const sections = root.querySelectorAll<HTMLElement>("section, footer");
     const pause = () => { root.dataset.motionPaused = String(document.hidden || Boolean(document.querySelector("dialog[open]"))); };
     const configure = () => {
@@ -83,11 +83,19 @@ export function PortfolioNavigation() {
   const [active, setActive] = useState("darw-inicio");
   const menuButton = useRef<HTMLButtonElement>(null);
   const header = useRef<HTMLElement>(null);
+  const navigate = (event: MouseEvent<HTMLAnchorElement>, id: string) => {
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    setOpen(false);
+    // Finish collapsing the menu before scrolling; hiding a focused link can
+    // otherwise interrupt the browser's anchor movement after keyboard input.
+    requestAnimationFrame(() => document.getElementById(id)?.scrollIntoView({ block: "start", behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" }));
+  };
   useEffect(() => {
     let frame = 0;
     const update = () => {
       let current: string = "darw-inicio";
       for (const [id] of sections) if ((document.getElementById(id)?.getBoundingClientRect().top ?? Infinity) < innerHeight * .4) current = id;
+      if (scrollY + innerHeight >= document.documentElement.scrollHeight - 4) current = "contacto";
       setActive(current); frame = 0;
     };
     const scroll = () => { if (!frame) frame = requestAnimationFrame(update); };
@@ -97,9 +105,9 @@ export function PortfolioNavigation() {
     return () => { cancelAnimationFrame(frame); window.removeEventListener("scroll", scroll); window.removeEventListener("resize", scroll); document.removeEventListener("keydown", escape); document.removeEventListener("pointerdown", outside); };
   }, []);
   return <><header className={s.header} ref={header}><div className={s.navPill}>
-    <a href="#darw-inicio" className={s.logo} aria-label="Darw, inicio" onClick={() => setOpen(false)}><img src="/images/darw/darw-logo.svg" alt="Darw" width="138" height="34" /></a>
-    <nav className={`${s.mainNav} ${open ? s.menuOpen : ""}`} id="darw-menu" aria-label="Navegación principal de Darw">{[["darw-inicio", "Inicio"], ["areas", "Áreas"], ["redes", "Trabajo"], ["contacto", "Contacto"]].map(([id, label]) => <a href={`#${id}`} key={id} onClick={() => setOpen(false)}>{label}</a>)}</nav>
-    <a className={s.navCta} href="#contacto" onClick={() => setOpen(false)}>Hablemos <span aria-hidden="true">↗</span></a><button type="button" ref={menuButton} className={s.menuButton} aria-expanded={open} aria-controls="darw-menu" aria-label={open ? "Cerrar menú" : "Abrir menú"} onClick={() => setOpen(value => !value)}>{open ? "×" : "☰"}</button>
+    <a href="#darw-inicio" className={s.logo} aria-label="Darw, inicio" onClick={event => navigate(event, "darw-inicio")}><img src="/images/darw/darw-logo.svg" alt="Darw" width="138" height="34" /></a>
+    <nav className={`${s.mainNav} ${open ? s.menuOpen : ""}`} id="darw-menu" aria-label="Navegación principal de Darw">{[["darw-inicio", "Inicio"], ["areas", "Áreas"], ["redes", "Trabajo"], ...sections.slice(3, 7), ["contacto", "Contacto"]].map(([id, label]) => <a href={`#${id}`} key={id} className={["identidad", "packaging", "web", "ilustracion"].includes(id) ? s.mobileNavItem : undefined} aria-current={active === id ? "location" : undefined} onClick={event => navigate(event, id)}>{label}</a>)}</nav>
+    <a className={s.navCta} href="#contacto" onClick={event => navigate(event, "contacto")}>Hablemos <span aria-hidden="true">↗</span></a><button type="button" ref={menuButton} className={s.menuButton} aria-expanded={open} aria-controls="darw-menu" aria-label={open ? "Cerrar menú" : "Abrir menú"} onClick={() => setOpen(value => !value)}>{open ? "×" : "☰"}</button>
   </div></header><nav className={s.sideIndex} aria-label="Índice de disciplinas">{sections.map(([id, label], index) => <a key={id} href={`#${id}`} aria-label={label} aria-current={active === id ? "location" : undefined}><span>{label}</span><b>{pad(index)}</b></a>)}</nav></>;
 }
 
